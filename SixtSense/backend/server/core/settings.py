@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'ai_engine',
     'accounts.apps.AccountsConfig',
+    'booking',
+    'sixtbridge',
 ]
 
 MIDDLEWARE = [
