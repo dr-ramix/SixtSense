@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sixt_client import SixtApiClient
 from models import Booking, Vehicle, ChatRequest, ChatResponse, SelectedVehicle, UserPreferences, ProtectionPackage, AddonGroup, VehicleRecommendation
-from recommendation import RecommendationService
+#from recommendation import RecommendationService
 from llm_engine import run_sales_chat
 
 import requests
@@ -16,7 +16,7 @@ from pydantic import BaseModel
 
 
 sixt_client = SixtApiClient()
-recommender = RecommendationService()
+#recommender = RecommendationService()
 
 app = FastAPI(title="Sixt HackaTUM Backend")
 
