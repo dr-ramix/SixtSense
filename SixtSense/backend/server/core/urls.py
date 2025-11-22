@@ -22,6 +22,7 @@ urlpatterns = [
     path("api/accounts/", include("accounts.urls")),
     path("api/booking/", include("booking.urls")),
     path("api/sixt/", include("sixtbridge.urls")),
+    path("api/ai-engine/", include("ai_engine.urls")),
 
     # Djoser + JWT auth
     path("api/auth/", include("djoser.urls")),
