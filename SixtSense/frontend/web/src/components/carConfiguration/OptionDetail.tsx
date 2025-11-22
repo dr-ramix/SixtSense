@@ -3,11 +3,26 @@ import { Card } from "../ui/card";
 
 type OptionDetailProps = {
   option: AddOnOption;
+  selected?: boolean;
+  onToggle?: (option: AddOnOption) => void;
 };
 
-export default function OptionDetail({ option }: OptionDetailProps) {
+export default function OptionDetail({
+  option,
+  selected,
+  onToggle,
+}: OptionDetailProps) {
   return (
-    <Card className="p-3 w-full flex-shrink-0">
+    <Card
+      className={`p-3 w-full flex-shrink-0 border cursor-pointer transition ${
+        selected
+          ? "border-primary ring-2 ring-primary/60"
+          : "border-transparent hover:border-primary/40 hover:ring-1 hover:ring-primary/20"
+      }`}
+      onClick={() => onToggle?.(option)}
+      role="button"
+      tabIndex={0}
+    >
       <div className="flex justify-between items-start w-full">
         <div className="font-medium">{option.chargeDetail.title}</div>
 

@@ -4,7 +4,9 @@ import InsuranceSelection from "@/components/carConfiguration/InsuranceSelection
 import Chatbot from "@/components/chat/Chatbot";
 import { Button } from "@/components/ui/button";
 import { Car } from "@/domain/Car";
-import { useState } from "react";
+import { AddOn, AddOnOption } from "@/domain/AddOn";
+import { Protection } from "@/domain/Protection";
+import { FormEvent, useState } from "react";
 
 const sampleCar: Car = {
   vehicle: {
@@ -54,6 +56,18 @@ const sampleCar: Car = {
   dealInfo: "BOOKED_CATEGORY",
   tags: [],
 };
+
+const sampleCars: Car[] = [
+  sampleCar,
+  {
+    ...sampleCar,
+    vehicle: { ...sampleCar.vehicle, id: "1a1257a0-e495-43ff-b213-9786338e159c", model: "GOLF VARIANT" },
+  },
+  {
+    ...sampleCar,
+    vehicle: { ...sampleCar.vehicle, id: "1a1257a0-e495-43ff-b213-9786338e159d", model: "GOLF GTI" },
+  },
+];
 
 const sampleProtections = [
   {
@@ -270,9 +284,7 @@ const sampleProtections = [
   },
   {
     id: "1",
-    name: "I don’t need protection",
-    description:
-      "I have coverage through personal insurance, my credit card, external protection purchased while booking, or do not need any protection . I understand I'm still responsible to SIXT for any damage, theft, or third-party claims.",
+    name: "I don't need protection",
     deductibleAmount: {
       currency: "USD",
       value: 0,
@@ -290,6 +302,11 @@ const sampleProtections = [
         amount: 0,
         suffix: "/day",
       },
+      listPrice: {
+        currency: "USD",
+        amount: 0,
+        suffix: "/day",
+      },
       totalPrice: {
         currency: "USD",
         amount: 0,
@@ -300,7 +317,7 @@ const sampleProtections = [
   },
 ];
 
-const sampleAddOns = [
+const sampleAddOns: AddOn[] = [
   {
     id: 0,
     name: "",
@@ -463,29 +480,80 @@ const sampleAddOns = [
 ];
 
 export default function HomePage() {
+  const [selection, setSelection] = useState<{
+    car: Car | null;
+    protection: Protection | null;
+    addOnOptions: AddOnOption[];
+  }>({
+    car: null,
+    protection: null,
+    addOnOptions: [],
+  });
+
+  const handleCarSelect = (car: Car) =>
+    setSelection((prev) => ({ ...prev, car }));
+  const handleProtectionSelect = (protection: Protection) =>
+    setSelection((prev) => ({ ...prev, protection }));
+  const handleAddOnOptionToggle = (option: AddOnOption) =>
+    setSelection((prev) => {
+      const exists = prev.addOnOptions.some(
+        (o) => o.chargeDetail.id === option.chargeDetail.id
+      );
+      return {
+        ...prev,
+        addOnOptions: exists
+          ? prev.addOnOptions.filter(
+              (o) => o.chargeDetail.id !== option.chargeDetail.id
+            )
+          : [...prev.addOnOptions, option],
+      };
+    });
+
   const steps = [
     {
       id: "car-selection",
-      content: <CarSelection cars={[sampleCar, sampleCar, sampleCar]} />,
+      content: (
+        <CarSelection
+          cars={sampleCars}
+          selectedCar={selection.car}
+          onSelect={handleCarSelect}
+        />
+      ),
     },
     {
       id: "insurance-selection",
       content: (
         <div className="w-full flex flex-col gap-3 overflow-y-auto pr-1">
-          <InsuranceSelection protections={sampleProtections} />
+          <InsuranceSelection
+            protections={sampleProtections}
+            selectedProtection={selection.protection}
+            onSelect={handleProtectionSelect}
+          />
         </div>
       ),
     },
     {
       id: "addon-selection",
-      content: <AddOnSelection addOns={sampleAddOns} />,
+      content: (
+        <AddOnSelection
+          addOns={sampleAddOns}
+          selectedOptions={selection.addOnOptions}
+          onToggle={handleAddOnOptionToggle}
+        />
+      ),
     },
   ];
 
   const [stepIndex, setStepIndex] = useState(0);
+  const isFirstStep = stepIndex === 0;
+  const isLastStep = stepIndex === steps.length - 1;
 
   const goPrev = () => setStepIndex((i) => Math.max(0, i - 1));
   const goNext = () => setStepIndex((i) => Math.min(steps.length - 1, i + 1));
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Selected configuration:", selection);
+  };
 
   return (
     <div className="flex min-h-screen w-full">
@@ -496,17 +564,25 @@ export default function HomePage() {
 
       {/* Right side - Configuration */}
       <div className="w-1/2 p-6 flex flex-col gap-4 bg-white">
-        <div className="flex-1 flex items-center justify-center">
-          {steps[stepIndex].content}
-        </div>
-        <div className="flex justify-between">
-          <Button variant="outline" onClick={goPrev} disabled={stepIndex === 0}>
-            Previous
-          </Button>
-          <Button onClick={goNext} disabled={stepIndex === steps.length - 1}>
-            Next
-          </Button>
-        </div>
+        <form
+          onSubmit={handleSubmit}
+          className="flex-1 flex flex-col gap-4"
+        >
+          <div className="flex-1 flex items-center justify-center">
+            {steps[stepIndex].content}
+          </div>
+          <div className="flex justify-between">
+            <Button variant="outline" type="button" onClick={goPrev} disabled={isFirstStep}>
+              Previous
+            </Button>
+            <Button
+              type={isLastStep ? "submit" : "button"}
+              onClick={isLastStep ? undefined : goNext}
+            >
+              {isLastStep ? "Submit" : "Next"}
+            </Button>
+          </div>
+        </form>
       </div>
     </div>
   );
