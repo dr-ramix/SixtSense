@@ -1,0 +1,54 @@
+import { Protection } from "@/domain/Protection";
+import { Star } from "lucide-react";
+import CoverageItemDetails from "./CoverageItemComponent";
+import { Card } from "../ui/card";
+
+type IncuranceSelectionProps = {
+  protections: Protection[];
+};
+
+export default function InsuranceSelection({
+  protections,
+}: IncuranceSelectionProps) {
+  return (
+    <div className="w-full flex flex-col gap-3">
+      {protections.map((protection) => (
+        <Card className="w-full m-0 p-3 h-40 flex flex-1 flex-row items-center justify-start rounded-2xl shadow-md overflow-hidden">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm align-top justify-start w-full">
+            {/* Row 1 */}
+            <div className="font-semibold justify-self-start">
+              {protection.name}
+            </div>
+            <div className="font-large font-bold justify-self-end pr-4 flex items-center gap-1">
+              {[...Array(protection.ratingStars)].map((_, i) => (
+                <Star key={i} className="inline-block w-4 h-4 opacity-70" />
+              ))}
+            </div>
+
+            {/* Row 2 */}
+            <div className="justify-self-start">
+              {protection.includes.length !== 0 && <div>Includes:</div>}
+              {protection.includes.map((include) => (
+                <CoverageItemDetails key={include.id} item={include} />
+              ))}
+            </div>
+
+            <div className="justify-self-start">
+              {protection.excludes.length !== 0 && <div>Excludes:</div>}
+              {protection.excludes.map((exclude) => (
+                <CoverageItemDetails key={exclude.id} item={exclude} />
+              ))}
+            </div>
+
+            {/* Row 3 */}
+            <div className="font-large font-bold justify-self-end col-span-2 pr-4">
+              {protection.price.totalPrice.currency}{" "}
+              {protection.price.totalPrice.amount}
+              {protection.price.totalPrice.suffix}
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+  );
+}
