@@ -1,0 +1,156 @@
+import { FormEvent, useEffect, useRef, useState } from "react";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+type ChatMessage = {
+  id: number;
+  role: "user" | "assistant";
+  content: string;
+};
+
+export default function Chatbot() {
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    {
+      id: 1,
+      role: "assistant",
+      content: "Hi! What kind of car do you want to rent today?",
+    },
+  ]);
+  const [input, setInput] = useState("");
+  const [isSending, setIsSending] = useState(false);
+
+  const bottomRef = useRef<HTMLDivElement | null>(null);
+
+  // auto-scroll to latest message
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    const text = input.trim();
+    if (!text || isSending) return;
+
+    const userMessage: ChatMessage = {
+      id: Date.now(),
+      role: "user",
+      content: text,
+    };
+
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
+    setInput("");
+    setIsSending(true);
+
+    try {
+      // 🔌 Call your backend here
+      // This assumes you have an endpoint POST /api/chat that returns: { reply: string }
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: updatedMessages.map((m) => ({
+            role: m.role,
+            content: m.content,
+          })),
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Request failed");
+      }
+
+      const data: { reply: string } = await res.json();
+
+      const botMessage: ChatMessage = {
+        id: Date.now() + 1,
+        role: "assistant",
+        content: data.reply,
+      };
+
+      setMessages((prev) => [...prev, botMessage]);
+    } catch (err) {
+      console.error(err);
+      const errorMessage: ChatMessage = {
+        id: Date.now() + 2,
+        role: "assistant",
+        content: "Sorry, something went wrong while contacting the server.",
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
+      setIsSending(false);
+    }
+  }
+
+  return (
+    <Card className="w-full max-w-lg h-[80vh] flex flex-col rounded-2xl shadow-md">
+      <CardHeader>
+        <CardTitle className="text-lg font-semibold">Chatbot</CardTitle>
+      </CardHeader>
+
+      <CardContent className="flex-1 px-4">
+        <ScrollArea className="h-full pr-2">
+          <div className="flex flex-col gap-3">
+            {messages.map((msg) => (
+              <div
+                key={msg.id}
+                className={`flex ${
+                  msg.role === "user" ? "justify-end" : "justify-start"
+                }`}
+              >
+                {msg.role === "assistant" && (
+                  <Avatar className="mr-2 h-7 w-7">
+                    <AvatarImage src="logo.png" alt="Bot" />
+                    <AvatarFallback>AI</AvatarFallback>
+                  </Avatar>
+                )}
+
+                <div
+                  className={`rounded-2xl px-3 py-2 text-sm max-w-[80%] ${
+                    msg.role === "user"
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted-foreground/10 text-foreground"
+                  }`}
+                >
+                  {msg.content}
+                </div>
+
+                {msg.role === "user" && (
+                  <Avatar className="ml-2 h-7 w-7">
+                    <AvatarImage src="" alt="You" />
+                    <AvatarFallback>U</AvatarFallback>
+                  </Avatar>
+                )}
+              </div>
+            ))}
+
+            <div ref={bottomRef} />
+          </div>
+        </ScrollArea>
+      </CardContent>
+
+      <CardFooter className="border-t px-4 py-3">
+        <form onSubmit={handleSubmit} className="flex w-full gap-2">
+          <Input
+            placeholder="Type a message..."
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            disabled={isSending}
+          />
+          <Button type="submit" disabled={isSending}>
+            {isSending ? "Sending..." : "Send"}
+          </Button>
+        </form>
+      </CardFooter>
+    </Card>
+  );
+}
