@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_filters",
     'rest_framework',
     'djoser',
     'rest_framework_simplejwt',
@@ -185,11 +186,6 @@ DJOSER = {
         "user": ["rest_framework.permissions.IsAuthenticated"],
         "user_delete": ["rest_framework.permissions.IsAuthenticated"],
         "current_user": ["rest_framework.permissions.IsAuthenticated"],
-    },
-    "SERIALIZERS": {
-        "user_create": "core.serializers.UserCreateSerializer",
-        "user": "core.serializers.UserReadSerializer",
-        "current_user": "core.serializers.UserReadSerializer",
     },
 }
 
