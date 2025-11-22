@@ -1,0 +1,1152 @@
+{
+    "reservationId": "tviycSQcDKNUNGb0UKyb",
+    "deals":[
+  {
+    "vehicle": {
+      "id": "1a1257a0-e495-43ff-b213-9786338e159b",
+      "brand": "VOLKSWAGEN",
+      "model": "GOLF",
+      "acrissCode": "CDAR",
+      "images": [
+        "https://vehicle-pictures-prod.orange.sixt.com/143707/9d9d9c/18_1.png"
+      ],
+      "bagsCount": 3,
+      "passengersCount": 5,
+      "groupType": "SEDAN",
+      "tyreType": "All-year tyres",
+      "transmissionType": "Automatic",
+      "fuelType": "Petrol",
+      "isNewCar": true,
+      "isRecommended": false,
+      "isMoreLuxury": false,
+      "isExcitingDiscount": false,
+      "attributes": [
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+          "title": "Transmission",
+          "value": "Automatic",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+        },
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+          "title": "Seats",
+          "value": "5",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+        }
+      ],
+      "vehicleStatus": "AVAILABLE",
+      "vehicleCost": {
+        "currency": "EUR",
+        "value": 36400
+      },
+      "upsellReasons": []
+    },
+    "pricing": {
+      "discountPercentage": 0,
+      "displayPrice": {
+        "currency": "EUR",
+        "amount": 45,
+        "prefix": "+",
+        "suffix": "/day"
+      },
+      "totalPrice": {
+        "currency": "EUR",
+        "amount": 180,
+        "prefix": "",
+        "suffix": "in total"
+      }
+    },
+    "dealInfo": "BOOKED_CATEGORY",
+    "tags": []
+  },
+  {
+    "vehicle": {
+      "id": "2b2357b1-f596-44aa-b314-0786338e160c",
+      "brand": "BMW",
+      "model": "3 SERIES",
+      "acrissCode": "PDAR",
+      "images": [
+        "https://vehicle-pictures-prod.orange.sixt.com/143708/9d9d9c/18_1.png"
+      ],
+      "bagsCount": 4,
+      "passengersCount": 5,
+      "groupType": "SEDAN",
+      "tyreType": "All-year tyres",
+      "transmissionType": "Automatic",
+      "fuelType": "Diesel",
+      "isNewCar": true,
+      "isRecommended": true,
+      "isMoreLuxury": true,
+      "isExcitingDiscount": false,
+      "attributes": [
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+          "title": "Transmission",
+          "value": "Automatic",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+        },
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+          "title": "Seats",
+          "value": "5",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+        }
+      ],
+      "vehicleStatus": "AVAILABLE",
+      "vehicleCost": {
+        "currency": "EUR",
+        "value": 48200
+      },
+      "upsellReasons": []
+    },
+    "pricing": {
+      "discountPercentage": 5,
+      "displayPrice": {
+        "currency": "EUR",
+        "amount": 79,
+        "prefix": "+",
+        "suffix": "/day"
+      },
+      "totalPrice": {
+        "currency": "EUR",
+        "amount": 316,
+        "prefix": "",
+        "suffix": "in total"
+      }
+    },
+    "dealInfo": "BOOKED_CATEGORY",
+    "tags": []
+  },
+  {
+    "vehicle": {
+      "id": "3c3457c2-a6a7-45cc-c415-1786338e161d",
+      "brand": "MERCEDES-BENZ",
+      "model": "C-CLASS",
+      "acrissCode": "PDAR",
+      "images": [
+        "https://vehicle-pictures-prod.orange.sixt.com/143709/9d9d9c/18_1.png"
+      ],
+      "bagsCount": 3,
+      "passengersCount": 5,
+      "groupType": "SEDAN",
+      "tyreType": "All-year tyres",
+      "transmissionType": "Automatic",
+      "fuelType": "Diesel",
+      "isNewCar": true,
+      "isRecommended": true,
+      "isMoreLuxury": true,
+      "isExcitingDiscount": true,
+      "attributes": [
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+          "title": "Transmission",
+          "value": "Automatic",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+        },
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+          "title": "Seats",
+          "value": "5",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+        }
+      ],
+      "vehicleStatus": "AVAILABLE",
+      "vehicleCost": {
+        "currency": "EUR",
+        "value": 51500
+      },
+      "upsellReasons": []
+    },
+    "pricing": {
+      "discountPercentage": 12,
+      "displayPrice": {
+        "currency": "EUR",
+        "amount": 89,
+        "prefix": "+",
+        "suffix": "/day"
+      },
+      "totalPrice": {
+        "currency": "EUR",
+        "amount": 356,
+        "prefix": "",
+        "suffix": "in total"
+      }
+    },
+    "dealInfo": "BOOKED_CATEGORY",
+    "tags": []
+  },
+  {
+    "vehicle": {
+      "id": "4d4557d3-b7b8-46dd-d516-2786338e162e",
+      "brand": "AUDI",
+      "model": "A4",
+      "acrissCode": "PDAR",
+      "images": [
+        "https://vehicle-pictures-prod.orange.sixt.com/143710/9d9d9c/18_1.png"
+      ],
+      "bagsCount": 3,
+      "passengersCount": 5,
+      "groupType": "SEDAN",
+      "tyreType": "All-year tyres",
+      "transmissionType": "Automatic",
+      "fuelType": "Petrol",
+      "isNewCar": true,
+      "isRecommended": false,
+      "isMoreLuxury": true,
+      "isExcitingDiscount": false,
+      "attributes": [
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+          "title": "Transmission",
+          "value": "Automatic",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+        },
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+          "title": "Seats",
+          "value": "5",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+        }
+      ],
+      "vehicleStatus": "AVAILABLE",
+      "vehicleCost": {
+        "currency": "EUR",
+        "value": 49800
+      },
+      "upsellReasons": []
+    },
+    "pricing": {
+      "discountPercentage": 7,
+      "displayPrice": {
+        "currency": "EUR",
+        "amount": 82,
+        "prefix": "+",
+        "suffix": "/day"
+      },
+      "totalPrice": {
+        "currency": "EUR",
+        "amount": 328,
+        "prefix": "",
+        "suffix": "in total"
+      }
+    },
+    "dealInfo": "BOOKED_CATEGORY",
+    "tags": []
+  },
+  {
+    "vehicle": {
+      "id": "5e5657e4-c8c9-47ee-e617-3786338e163f",
+      "brand": "VOLKSWAGEN",
+      "model": "T-ROC",
+      "acrissCode": "CFAR",
+      "images": [
+        "https://vehicle-pictures-prod.orange.sixt.com/143711/9d9d9c/18_1.png"
+      ],
+      "bagsCount": 3,
+      "passengersCount": 5,
+      "groupType": "SUV",
+      "tyreType": "All-year tyres",
+      "transmissionType": "Automatic",
+      "fuelType": "Petrol",
+      "isNewCar": true,
+      "isRecommended": true,
+      "isMoreLuxury": false,
+      "isExcitingDiscount": true,
+      "attributes": [
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+          "title": "Transmission",
+          "value": "Automatic",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+        },
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+          "title": "Seats",
+          "value": "5",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+        }
+      ],
+      "vehicleStatus": "AVAILABLE",
+      "vehicleCost": {
+        "currency": "EUR",
+        "value": 31200
+      },
+      "upsellReasons": []
+    },
+    "pricing": {
+      "discountPercentage": 10,
+      "displayPrice": {
+        "currency": "EUR",
+        "amount": 59,
+        "prefix": "+",
+        "suffix": "/day"
+      },
+      "totalPrice": {
+        "currency": "EUR",
+        "amount": 236,
+        "prefix": "",
+        "suffix": "in total"
+      }
+    },
+    "dealInfo": "BOOKED_CATEGORY",
+    "tags": []
+  },
+
+  {
+    "vehicle": {
+      "id": "6f6757f5-d9da-48ff-f718-4786338e1650",
+      "brand": "VOLVO",
+      "model": "XC40",
+      "acrissCode": "IFAR",
+      "images": [
+        "https://vehicle-pictures-prod.orange.sixt.com/143712/9d9d9c/18_1.png"
+      ],
+      "bagsCount": 4,
+      "passengersCount": 5,
+      "groupType": "SUV",
+      "tyreType": "All-year tyres",
+      "transmissionType": "Automatic",
+      "fuelType": "Hybrid",
+      "isNewCar": true,
+      "isRecommended": true,
+      "isMoreLuxury": true,
+      "isExcitingDiscount": true,
+      "attributes": [
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+          "title": "Transmission",
+          "value": "Automatic",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+        },
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+          "title": "Seats",
+          "value": "5",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+        }
+      ],
+      "vehicleStatus": "AVAILABLE",
+      "vehicleCost": {
+        "currency": "EUR",
+        "value": 43500
+      },
+      "upsellReasons": []
+    },
+    "pricing": {
+      "discountPercentage": 8,
+      "displayPrice": {
+        "currency": "EUR",
+        "amount": 76,
+        "prefix": "+",
+        "suffix": "/day"
+      },
+      "totalPrice": {
+        "currency": "EUR",
+        "amount": 304,
+        "prefix": "",
+        "suffix": "in total"
+      }
+    },
+    "dealInfo": "BOOKED_CATEGORY",
+    "tags": []
+  },
+
+  {
+    "vehicle": {
+      "id": "7a785806-eaea-4900-a819-5786338e1661",
+      "brand": "TOYOTA",
+      "model": "COROLLA",
+      "acrissCode": "CDMR",
+      "images": [
+        "https://vehicle-pictures-prod.orange.sixt.com/143713/9d9d9c/18_1.png"
+      ],
+      "bagsCount": 2,
+      "passengersCount": 5,
+      "groupType": "SEDAN",
+      "tyreType": "All-year tyres",
+      "transmissionType": "Manual",
+      "fuelType": "Petrol",
+      "isNewCar": false,
+      "isRecommended": true,
+      "isMoreLuxury": false,
+      "isExcitingDiscount": true,
+      "attributes": [
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_TRANSMISSION",
+          "title": "Transmission",
+          "value": "Manual",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_manual.png"
+        },
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+          "title": "Seats",
+          "value": "5",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+        }
+      ],
+      "vehicleStatus": "AVAILABLE",
+      "vehicleCost": {
+        "currency": "EUR",
+        "value": 23800
+      },
+      "upsellReasons": []
+    },
+    "pricing": {
+      "discountPercentage": 15,
+      "displayPrice": {
+        "currency": "EUR",
+        "amount": 39,
+        "prefix": "+",
+        "suffix": "/day"
+      },
+      "totalPrice": {
+        "currency": "EUR",
+        "amount": 156,
+        "prefix": "",
+        "suffix": "in total"
+      }
+    },
+    "dealInfo": "BOOKED_CATEGORY",
+    "tags": []
+  },
+
+  {
+    "vehicle": {
+      "id": "8b895817-fbfb-4a11-b91a-6786338e1672",
+      "brand": "FORD",
+      "model": "FOCUS",
+      "acrissCode": "CDMR",
+      "images": [
+        "https://vehicle-pictures-prod.orange.sixt.com/143714/9d9d9c/18_1.png"
+      ],
+      "bagsCount": 2,
+      "passengersCount": 5,
+      "groupType": "HATCHBACK",
+      "tyreType": "All-year tyres",
+      "transmissionType": "Manual",
+      "fuelType": "Diesel",
+      "isNewCar": false,
+      "isRecommended": false,
+      "isMoreLuxury": false,
+      "isExcitingDiscount": false,
+      "attributes": [
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_TRANSMISSION",
+          "title": "Transmission",
+          "value": "Manual",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_manual.png"
+        },
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+          "title": "Seats",
+          "value": "5",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+        }
+      ],
+      "vehicleStatus": "AVAILABLE",
+      "vehicleCost": {
+        "currency": "EUR",
+        "value": 21500
+      },
+      "upsellReasons": []
+    },
+    "pricing": {
+      "discountPercentage": 0,
+      "displayPrice": {
+        "currency": "EUR",
+        "amount": 32,
+        "prefix": "+",
+        "suffix": "/day"
+      },
+      "totalPrice": {
+        "currency": "EUR",
+        "amount": 128,
+        "prefix": "",
+        "suffix": "in total"
+      }
+    },
+    "dealInfo": "BOOKED_CATEGORY",
+    "tags": []
+  },
+
+  {
+    "vehicle": {
+      "id": "9c9a5828-acac-4b22-c91b-7786338e1683",
+      "brand": "RENAULT",
+      "model": "CLIO",
+      "acrissCode": "EDMR",
+      "images": [
+        "https://vehicle-pictures-prod.orange.sixt.com/143715/9d9d9c/18_1.png"
+      ],
+      "bagsCount": 1,
+      "passengersCount": 5,
+      "groupType": "HATCHBACK",
+      "tyreType": "All-year tyres",
+      "transmissionType": "Manual",
+      "fuelType": "Petrol",
+      "isNewCar": false,
+      "isRecommended": false,
+      "isMoreLuxury": false,
+      "isExcitingDiscount": true,
+      "attributes": [
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_TRANSMISSION",
+          "title": "Transmission",
+          "value": "Manual",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_manual.png"
+        },
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+          "title": "Seats",
+          "value": "5",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+        }
+      ],
+      "vehicleStatus": "AVAILABLE",
+      "vehicleCost": {
+        "currency": "EUR",
+        "value": 18500
+      },
+      "upsellReasons": []
+    },
+    "pricing": {
+      "discountPercentage": 20,
+      "displayPrice": {
+        "currency": "EUR",
+        "amount": 27,
+        "prefix": "+",
+        "suffix": "/day"
+      },
+      "totalPrice": {
+        "currency": "EUR",
+        "amount": 108,
+        "prefix": "",
+        "suffix": "in total"
+      }
+    },
+    "dealInfo": "BOOKED_CATEGORY",
+    "tags": []
+  },
+
+  {
+    "vehicle": {
+      "id": "0d0b5839-bdbd-4c33-d91c-8786338e1694",
+      "brand": "PEUGEOT",
+      "model": "308",
+      "acrissCode": "CDMR",
+      "images": [
+        "https://vehicle-pictures-prod.orange.sixt.com/143716/9d9d9c/18_1.png"
+      ],
+      "bagsCount": 2,
+      "passengersCount": 5,
+      "groupType": "HATCHBACK",
+      "tyreType": "All-year tyres",
+      "transmissionType": "Manual",
+      "fuelType": "Diesel",
+      "isNewCar": false,
+      "isRecommended": true,
+      "isMoreLuxury": false,
+      "isExcitingDiscount": false,
+      "attributes": [
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_TRANSMISSION",
+          "title": "Transmission",
+          "value": "Manual",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_manual.png"
+        },
+        {
+          "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+          "title": "Seats",
+          "value": "5",
+          "attributeType": "CARD_ATTRIBUTE",
+          "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+        }
+      ],
+      "vehicleStatus": "AVAILABLE",
+      "vehicleCost": {
+        "currency": "EUR",
+        "value": 22500
+      },
+      "upsellReasons": []
+    },
+    "pricing": {
+      "discountPercentage": 5,
+      "displayPrice": {
+        "currency": "EUR",
+        "amount": 35,
+        "prefix": "+",
+        "suffix": "/day"
+      },
+      "totalPrice": {
+        "currency": "EUR",
+        "amount": 140,
+        "prefix": "",
+        "suffix": "in total"
+      }
+    },
+    "dealInfo": "BOOKED_CATEGORY",
+    "tags": []
+  },
+  {
+  "vehicle": {
+    "id": "aa1111a0-e495-43ff-b213-9786338e1001",
+    "brand": "VOLKSWAGEN",
+    "model": "PASSAT",
+    "acrissCode": "SDAR",
+    "images": [
+      "https://vehicle-pictures-prod.orange.sixt.com/200010/aaaaaa/18_1.png"
+    ],
+    "bagsCount": 4,
+    "passengersCount": 5,
+    "groupType": "SEDAN",
+    "tyreType": "All-year tyres",
+    "transmissionType": "Automatic",
+    "fuelType": "Diesel",
+    "isNewCar": true,
+    "isRecommended": true,
+    "isMoreLuxury": false,
+    "isExcitingDiscount": false,
+    "attributes": [
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+        "title": "Transmission",
+        "value": "Automatic",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+      },
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+        "title": "Seats",
+        "value": "5",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+      }
+    ],
+    "vehicleStatus": "AVAILABLE",
+    "vehicleCost": {
+      "currency": "EUR",
+      "value": 38900
+    },
+    "upsellReasons": []
+  },
+  "pricing": {
+    "discountPercentage": 5,
+    "displayPrice": {
+      "currency": "EUR",
+      "amount": 62,
+      "prefix": "+",
+      "suffix": "/day"
+    },
+    "totalPrice": {
+      "currency": "EUR",
+      "amount": 248,
+      "prefix": "",
+      "suffix": "in total"
+    }
+  },
+  "dealInfo": "BOOKED_CATEGORY",
+  "tags": []
+},
+{
+  "vehicle": {
+    "id": "bb2222b1-f596-44aa-b314-0786338e1002",
+    "brand": "BMW",
+    "model": "5 SERIES",
+    "acrissCode": "LDAR",
+    "images": [
+      "https://vehicle-pictures-prod.orange.sixt.com/200011/bbbbbb/18_1.png"
+    ],
+    "bagsCount": 4,
+    "passengersCount": 5,
+    "groupType": "SEDAN",
+    "tyreType": "All-year tyres",
+    "transmissionType": "Automatic",
+    "fuelType": "Diesel",
+    "isNewCar": true,
+    "isRecommended": true,
+    "isMoreLuxury": true,
+    "isExcitingDiscount": true,
+    "attributes": [
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+        "title": "Transmission",
+        "value": "Automatic",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+      },
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+        "title": "Seats",
+        "value": "5",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+      }
+    ],
+    "vehicleStatus": "AVAILABLE",
+    "vehicleCost": {
+      "currency": "EUR",
+      "value": 61500
+    },
+    "upsellReasons": []
+  },
+  "pricing": {
+    "discountPercentage": 12,
+    "displayPrice": {
+      "currency": "EUR",
+      "amount": 109,
+      "prefix": "+",
+      "suffix": "/day"
+    },
+    "totalPrice": {
+      "currency": "EUR",
+      "amount": 436,
+      "prefix": "",
+      "suffix": "in total"
+    }
+  },
+  "dealInfo": "BOOKED_CATEGORY",
+  "tags": []
+},
+{
+  "vehicle": {
+    "id": "cc3333c2-a6a7-45cc-c415-1786338e1003",
+    "brand": "MERCEDES-BENZ",
+    "model": "E-CLASS",
+    "acrissCode": "LDAR",
+    "images": [
+      "https://vehicle-pictures-prod.orange.sixt.com/200012/cccccc/18_1.png"
+    ],
+    "bagsCount": 4,
+    "passengersCount": 5,
+    "groupType": "SEDAN",
+    "tyreType": "All-year tyres",
+    "transmissionType": "Automatic",
+    "fuelType": "Diesel",
+    "isNewCar": true,
+    "isRecommended": true,
+    "isMoreLuxury": true,
+    "isExcitingDiscount": false,
+    "attributes": [
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+        "title": "Transmission",
+        "value": "Automatic",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+      },
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+        "title": "Seats",
+        "value": "5",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+      }
+    ],
+    "vehicleStatus": "AVAILABLE",
+    "vehicleCost": {
+      "currency": "EUR",
+      "value": 64500
+    },
+    "upsellReasons": []
+  },
+  "pricing": {
+    "discountPercentage": 8,
+    "displayPrice": {
+      "currency": "EUR",
+      "amount": 119,
+      "prefix": "+",
+      "suffix": "/day"
+    },
+    "totalPrice": {
+      "currency": "EUR",
+      "amount": 476,
+      "prefix": "",
+      "suffix": "in total"
+    }
+  },
+  "dealInfo": "BOOKED_CATEGORY",
+  "tags": []
+},
+{
+  "vehicle": {
+    "id": "dd4444d3-b7b8-46dd-d516-2786338e1004",
+    "brand": "AUDI",
+    "model": "A6",
+    "acrissCode": "LDAR",
+    "images": [
+      "https://vehicle-pictures-prod.orange.sixt.com/200013/dddddd/18_1.png"
+    ],
+    "bagsCount": 4,
+    "passengersCount": 5,
+    "groupType": "SEDAN",
+    "tyreType": "All-year tyres",
+    "transmissionType": "Automatic",
+    "fuelType": "Hybrid",
+    "isNewCar": true,
+    "isRecommended": false,
+    "isMoreLuxury": true,
+    "isExcitingDiscount": false,
+    "attributes": [
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+        "title": "Transmission",
+        "value": "Automatic",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+      },
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+        "title": "Seats",
+        "value": "5",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+      }
+    ],
+    "vehicleStatus": "AVAILABLE",
+    "vehicleCost": {
+      "currency": "EUR",
+      "value": 63200
+    },
+    "upsellReasons": []
+  },
+  "pricing": {
+    "discountPercentage": 6,
+    "displayPrice": {
+      "currency": "EUR",
+      "amount": 112,
+      "prefix": "+",
+      "suffix": "/day"
+    },
+    "totalPrice": {
+      "currency": "EUR",
+      "amount": 448,
+      "prefix": "",
+      "suffix": "in total"
+    }
+  },
+  "dealInfo": "BOOKED_CATEGORY",
+  "tags": []
+},
+{
+  "vehicle": {
+    "id": "ee5555e4-c8c9-47ee-e617-3786338e1005",
+    "brand": "VOLKSWAGEN",
+    "model": "TIGUAN",
+    "acrissCode": "IFAR",
+    "images": [
+      "https://vehicle-pictures-prod.orange.sixt.com/200014/eeeeee/18_1.png"
+    ],
+    "bagsCount": 4,
+    "passengersCount": 5,
+    "groupType": "SUV",
+    "tyreType": "All-year tyres",
+    "transmissionType": "Automatic",
+    "fuelType": "Diesel",
+    "isNewCar": true,
+    "isRecommended": true,
+    "isMoreLuxury": false,
+    "isExcitingDiscount": true,
+    "attributes": [
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+        "title": "Transmission",
+        "value": "Automatic",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+      },
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+        "title": "Seats",
+        "value": "5",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+      }
+    ],
+    "vehicleStatus": "AVAILABLE",
+    "vehicleCost": {
+      "currency": "EUR",
+      "value": 34800
+    },
+    "upsellReasons": []
+  },
+  "pricing": {
+    "discountPercentage": 10,
+    "displayPrice": {
+      "currency": "EUR",
+      "amount": 69,
+      "prefix": "+",
+      "suffix": "/day"
+    },
+    "totalPrice": {
+      "currency": "EUR",
+      "amount": 276,
+      "prefix": "",
+      "suffix": "in total"
+    }
+  },
+  "dealInfo": "BOOKED_CATEGORY",
+  "tags": []
+},
+{
+  "vehicle": {
+    "id": "ff6666f5-d9da-48ff-f718-4786338e1006",
+    "brand": "SKODA",
+    "model": "KODIAQ",
+    "acrissCode": "SFAR",
+    "images": [
+      "https://vehicle-pictures-prod.orange.sixt.com/200015/ffffff/18_1.png"
+    ],
+    "bagsCount": 5,
+    "passengersCount": 7,
+    "groupType": "SUV",
+    "tyreType": "All-year tyres",
+    "transmissionType": "Automatic",
+    "fuelType": "Diesel",
+    "isNewCar": true,
+    "isRecommended": true,
+    "isMoreLuxury": false,
+    "isExcitingDiscount": false,
+    "attributes": [
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+        "title": "Transmission",
+        "value": "Automatic",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+      },
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+        "title": "Seats",
+        "value": "7",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+      }
+    ],
+    "vehicleStatus": "AVAILABLE",
+    "vehicleCost": {
+      "currency": "EUR",
+      "value": 37200
+    },
+    "upsellReasons": []
+  },
+  "pricing": {
+    "discountPercentage": 7,
+    "displayPrice": {
+      "currency": "EUR",
+      "amount": 82,
+      "prefix": "+",
+      "suffix": "/day"
+    },
+    "totalPrice": {
+      "currency": "EUR",
+      "amount": 328,
+      "prefix": "",
+      "suffix": "in total"
+    }
+  },
+  "dealInfo": "BOOKED_CATEGORY",
+  "tags": []
+},
+{
+  "vehicle": {
+    "id": "ab777706-eaea-4900-a819-5786338e1007",
+    "brand": "TOYOTA",
+    "model": "RAV4",
+    "acrissCode": "IFAR",
+    "images": [
+      "https://vehicle-pictures-prod.orange.sixt.com/200016/111111/18_1.png"
+    ],
+    "bagsCount": 4,
+    "passengersCount": 5,
+    "groupType": "SUV",
+    "tyreType": "All-year tyres",
+    "transmissionType": "Automatic",
+    "fuelType": "Hybrid",
+    "isNewCar": true,
+    "isRecommended": true,
+    "isMoreLuxury": false,
+    "isExcitingDiscount": true,
+    "attributes": [
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+        "title": "Transmission",
+        "value": "Automatic",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+      },
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+        "title": "Seats",
+        "value": "5",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+      }
+    ],
+    "vehicleStatus": "AVAILABLE",
+    "vehicleCost": {
+      "currency": "EUR",
+      "value": 35400
+    },
+    "upsellReasons": []
+  },
+  "pricing": {
+    "discountPercentage": 9,
+    "displayPrice": {
+      "currency": "EUR",
+      "amount": 74,
+      "prefix": "+",
+      "suffix": "/day"
+    },
+    "totalPrice": {
+      "currency": "EUR",
+      "amount": 296,
+      "prefix": "",
+      "suffix": "in total"
+    }
+  },
+  "dealInfo": "BOOKED_CATEGORY",
+  "tags": []
+},
+{
+  "vehicle": {
+    "id": "bc888817-fbfb-4a11-b91a-6786338e1008",
+    "brand": "VOLVO",
+    "model": "XC60",
+    "acrissCode": "LFAR",
+    "images": [
+      "https://vehicle-pictures-prod.orange.sixt.com/200017/222222/18_1.png"
+    ],
+    "bagsCount": 5,
+    "passengersCount": 5,
+    "groupType": "SUV",
+    "tyreType": "All-year tyres",
+    "transmissionType": "Automatic",
+    "fuelType": "Hybrid",
+    "isNewCar": true,
+    "isRecommended": true,
+    "isMoreLuxury": true,
+    "isExcitingDiscount": true,
+    "attributes": [
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+        "title": "Transmission",
+        "value": "Automatic",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+      },
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+        "title": "Seats",
+        "value": "5",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+      }
+    ],
+    "vehicleStatus": "AVAILABLE",
+    "vehicleCost": {
+      "currency": "EUR",
+      "value": 49800
+    },
+    "upsellReasons": []
+  },
+  "pricing": {
+    "discountPercentage": 11,
+    "displayPrice": {
+      "currency": "EUR",
+      "amount": 98,
+      "prefix": "+",
+      "suffix": "/day"
+    },
+    "totalPrice": {
+      "currency": "EUR",
+      "amount": 392,
+      "prefix": "",
+      "suffix": "in total"
+    }
+  },
+  "dealInfo": "BOOKED_CATEGORY",
+  "tags": []
+},
+{
+  "vehicle": {
+    "id": "cd999928-acac-4b22-c91b-7786338e1009",
+    "brand": "FORD",
+    "model": "KUGA",
+    "acrissCode": "IFAR",
+    "images": [
+      "https://vehicle-pictures-prod.orange.sixt.com/200018/333333/18_1.png"
+    ],
+    "bagsCount": 4,
+    "passengersCount": 5,
+    "groupType": "SUV",
+    "tyreType": "All-year tyres",
+    "transmissionType": "Automatic",
+    "fuelType": "Petrol",
+    "isNewCar": false,
+    "isRecommended": true,
+    "isMoreLuxury": false,
+    "isExcitingDiscount": false,
+    "attributes": [
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+        "title": "Transmission",
+        "value": "Automatic",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png"
+      },
+      {
+        "key": "P100_VEHICLE_ATTRIBUTE_SEATS",
+        "title": "Seats",
+        "value": "5",
+        "attributeType": "CARD_ATTRIBUTE",
+        "iconUrl": "https://www.sixt.com/shared/icons/trex/p100/seat.png"
+      }
+    ],
+    "vehicleStatus": "AVAILABLE",
+    "vehicleCost": {
+      "currency": "EUR",
+      "value": 29800
+    },
+    "upsellReasons": []
+  },
+  "pricing": {
+    "discountPercentage": 4,
+    "displayPrice": {
+      "currency": "EUR",
+      "amount": 61,
+      "prefix": "+",
+      "suffix": "/day"
+    },
+    "totalPrice": {
+      "currency": "EUR",
+      "amount": 244,
+      "prefix": "",
+      "suffix": "in total"
+    }
+  },
+  "dealInfo": "BOOKED_CATEGORY",
+  "tags": []
+}
+
+
+]
+}
