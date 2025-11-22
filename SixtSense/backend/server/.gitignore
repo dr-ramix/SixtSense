@@ -1,0 +1,73 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# ---- Django ----
+*.log
+*.pot
+*.py,cover
+db.sqlite3
+media/
+staticfiles/
+static/
+local_settings.py
+
+# Django secret & environment
+.env
+*.env
+.env.*    # e.g. .env.dev, .env.prod
+secrets.json
+
+# ---- Virtual Environment ----
+/env
+/venv
+/.venv
+ENV/
+env.bak/
+venv.bak/
+
+# ---- IDE / Editors ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- Migrations (optional — keep if unstable hackathon prototype) ----
+**/migrations/__pycache__/
+# Uncomment below if you DON'T want initial migration files tracked early in hackathon
+# **/migrations/0*.py
+
+# ---- Bytecode & cache ----
+*.cache
+*.mo
+*.DS_Store
+Thumbs.db
+
+# ---- Coverage ----
+.coverage
+.coverage.*
+.cache
+coverage.xml
+htmlcov/
+
+# ---- Testing ----
+pytest_cache/
+.tox/
+.junit.xml
+
+# ---- Containers ----
+docker-compose.override.yml
+*.pid
+
+# ---- Frontend (if using React/Vite for UI) ----
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log
