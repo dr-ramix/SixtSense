@@ -91,8 +91,23 @@ class ChatAPIView(APIView):
         )
 
         booking_data = chat_session.booking.data
-        profile_data = {}            # future: link user profile
+        profile_data = {}
         current_state = chat_session.state or {}
+
+        # ---- NEW: build conversation history (last few turns) ----
+        # Include both user and assistant messages, but keep it short
+        # ---- NEW: build conversation history (last few turns) ----
+        # Get last 8 messages by created_at DESC, then reverse into chronological order
+        history_qs = chat_session.messages.order_by("-created_at")[:8]
+        history_msgs = list(history_qs)[::-1]
+
+        history_lines = []
+        for m in history_msgs:
+            prefix = "User" if m.role == "user" else "Assistant"
+            history_lines.append(f"{prefix}: {m.content}")
+
+        history_text = "\n".join(history_lines)
+        # ----------------------------------------------------------
 
         # 2) Run AI Agent (LangChain)
         agent = SalesAgent()
@@ -101,6 +116,7 @@ class ChatAPIView(APIView):
             profile=profile_data,
             state=current_state,
             message=user_message,
+            history=history_text,
         )
 
         assistant_message = result["assistant_message"]
@@ -109,30 +125,26 @@ class ChatAPIView(APIView):
         protection_needs = needs.get("protections", [])
         addon_needs = needs.get("addons", [])
 
-        # 3) Save updated state
         new_state = {**current_state, **state_update}
         chat_session.state = new_state
         chat_session.save()
 
-        # 4) Fetch live SIXT data (vehicles, protections, addons)
         deals = self.fetch_deals(booking_data)
         protections_raw = self.fetch_protections(booking_data)
         addons_raw = self.fetch_addons(booking_data)
 
         original_price = self.get_original_price(deals)
 
-        # 5) Rank vehicles
         top_deals = hybrid_rank_deals(
             deals=deals,
             profile=new_state,
             original_total_price=original_price,
             k=3,
-            use_llm=True,  # set False if you want cheaper LLM usage
+            use_llm=True,
         )
 
         cars = [self.compact_car(d, original_price) for d in top_deals]
 
-        # 6) Recommend protections & addons
         protections = recommend_protections(
             protections_raw.get("protectionPackages", []),
             new_state,
@@ -145,14 +157,12 @@ class ChatAPIView(APIView):
             addon_needs,
         )
 
-        # 7) Save assistant message
         ChatMessage.objects.create(
             chat_session=chat_session,
             role="assistant",
             content=assistant_message,
         )
 
-        # 8) Return full conversation + recs
         messages = [
             {
                 "role": m.role,
@@ -170,7 +180,6 @@ class ChatAPIView(APIView):
             "addons": addons,
             "state": new_state,
         })
-
     # ---------------------------------------------------------------------
     # Helper Methods
     # ---------------------------------------------------------------------
