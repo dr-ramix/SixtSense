@@ -3,6 +3,7 @@ import { Star } from "lucide-react";
 import CoverageItemDetails from "./CoverageItemComponent";
 import { Card } from "../ui/card";
 import BackgroundGradient from "../ui/background-gradient";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
 
 type IncuranceSelectionProps = {
   protections: Protection[];
@@ -16,58 +17,60 @@ export default function InsuranceSelection({
   onSelect,
 }: IncuranceSelectionProps) {
   return (
-    <div className="w-full flex flex-col gap-3">
-      {protections.map((protection) => {
-        const isSelected = selectedProtection?.id === protection.id;
-        return (
-          <Card
-            key={protection.id}
-            className={`relative w-full m-0 p-3 h-40 flex flex-1 flex-row items-center justify-start rounded-2xl shadow-md overflow-hidden border transition cursor-pointer ${
-              isSelected
-                ? "border-border/70 bg-primary/5"
-                : "border-border/70 hover:border-primary/60 hover:ring-1 hover:ring-primary/20"
-            }`}
-            onClick={() => onSelect(protection)}
-            role="button"
-            tabIndex={0}
-          >
-            {isSelected && <BackgroundGradient />}
-            <div className="relative z-10 grid grid-cols-2 gap-x-4 gap-y-1 text-sm align-top justify-start w-full">
-              {/* Row 1 */}
-              <div className="font-semibold justify-self-start">
-                {protection.name}
-              </div>
-              <div className="font-large font-bold justify-self-end pr-4 flex items-center gap-1">
-                {[...Array(protection.ratingStars)].map((_, i) => (
-                  <Star key={i} className="inline-block w-4 h-4 opacity-70" />
-                ))}
-              </div>
+    <ScrollArea className="h-[600px] pr-2">
+      <div className="w-full flex flex-col gap-3">
+        {protections.map((protection) => {
+          const isSelected = selectedProtection?.id === protection.id;
+          return (
+            <Card
+              key={protection.id}
+              className={`relative w-full m-0 p-3 h-40 flex flex-1 flex-row items-center justify-start rounded-2xl shadow-md overflow-hidden border transition cursor-pointer ${
+                isSelected
+                  ? "border-border/70 bg-primary/5"
+                  : "border-border/70 hover:border-primary/60 hover:ring-1 hover:ring-primary/20"
+              }`}
+              onClick={() => onSelect(protection)}
+              role="button"
+              tabIndex={0}
+            >
+              {isSelected && <BackgroundGradient />}
+              <div className="relative z-10 grid grid-cols-2 gap-x-4 gap-y-1 text-sm align-top justify-start w-full">
+                {/* Row 1 */}
+                <div className="font-semibold justify-self-start">
+                  {protection.name}
+                </div>
+                <div className="font-large font-bold justify-self-end pr-4 flex items-center gap-1">
+                  {[...Array(protection.ratingStars)].map((_, i) => (
+                    <Star key={i} className="inline-block w-4 h-4 opacity-70" />
+                  ))}
+                </div>
 
-              {/* Row 2 */}
-              <div className="justify-self-start">
-                {protection.includes.length !== 0 && <div>Includes:</div>}
-                {protection.includes.map((include) => (
-                  <CoverageItemDetails key={include.id} item={include} />
-                ))}
-              </div>
+                {/* Row 2 */}
+                <div className="justify-self-start">
+                  {protection.includes.length !== 0 && <div>Includes:</div>}
+                  {protection.includes.map((include) => (
+                    <CoverageItemDetails key={include.id} item={include} />
+                  ))}
+                </div>
 
-              <div className="justify-self-start">
-                {protection.excludes.length !== 0 && <div>Excludes:</div>}
-                {protection.excludes.map((exclude) => (
-                  <CoverageItemDetails key={exclude.id} item={exclude} />
-                ))}
-              </div>
+                <div className="justify-self-start">
+                  {protection.excludes.length !== 0 && <div>Excludes:</div>}
+                  {protection.excludes.map((exclude) => (
+                    <CoverageItemDetails key={exclude.id} item={exclude} />
+                  ))}
+                </div>
 
-              {/* Row 3 */}
-              <div className="font-large font-bold justify-self-end col-span-2 pr-4">
-                {protection.price.totalPrice.currency}{" "}
-                {protection.price.totalPrice.amount}
-                {protection.price.totalPrice.suffix}
+                {/* Row 3 */}
+                <div className="font-large font-bold justify-self-end col-span-2 pr-4">
+                  {protection.price.totalPrice.currency}{" "}
+                  {protection.price.totalPrice.amount}
+                  {protection.price.totalPrice.suffix}
+                </div>
               </div>
-            </div>
-          </Card>
-        );
-      })}
-    </div>
+            </Card>
+          );
+        })}
+      </div>
+    </ScrollArea>
   );
 }

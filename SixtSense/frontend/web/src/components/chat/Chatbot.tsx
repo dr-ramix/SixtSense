@@ -121,7 +121,7 @@ export default function Chatbot({ onAiUpdate }: ChatbotProps) {
       </CardHeader>
 
       <CardContent className="flex-1 px-4">
-        <ScrollArea className="h-full pr-2">
+        <ScrollArea className="h-[500px] pr-2">
           <div className="flex flex-col gap-3">
             {messages.map((msg) => (
               <div
