@@ -16,6 +16,7 @@ import { Car } from "@/domain/Car";
 import { AddOn, AddOnOption } from "@/domain/AddOn";
 import { Protection } from "@/domain/Protection";
 import { FormEvent, useState } from "react";
+import { SubmitDialog } from "@/components/submitDialog/SubmitDialog";
 
 const sampleCar: Car = {
   vehicle: {
@@ -534,6 +535,7 @@ export default function HomePage() {
   });
 
   const [cars, setCars] = useState<Car[]>(sampleCars);
+  const [isReviewOpen, setIsReviewOpen] = useState(false);
 
   const handleCarSelect = (car: Car) =>
     setSelection((prev) => ({ ...prev, car }));
@@ -654,7 +656,11 @@ export default function HomePage() {
   const goNext = () => setStepIndex((i) => Math.min(steps.length - 1, i + 1));
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Selected configuration:", selection);
+    setIsReviewOpen(true);
+  };
+  const finalizeBooking = () => {
+    console.log("Final booking:", selection);
+    setIsReviewOpen(false);
   };
 
   return (
@@ -694,9 +700,11 @@ export default function HomePage() {
               ))}
             </StepperNav>
           </Stepper>
+
           <div className="flex-1 flex items-center justify-center">
             {steps[stepIndex].content}
           </div>
+
           <div className="flex justify-between">
             {["insurance-selection", "addon-selection"].includes(
               steps[stepIndex].id
@@ -721,6 +729,13 @@ export default function HomePage() {
             </Button>
           </div>
         </form>
+
+        <SubmitDialog
+          open={isReviewOpen}
+          onOpenChange={setIsReviewOpen}
+          selection={selection}
+          onFinalize={finalizeBooking}
+        />
       </div>
     </div>
   );
