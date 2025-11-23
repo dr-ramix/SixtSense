@@ -647,7 +647,6 @@ export default function HomePage() {
   ];
 
   const [stepIndex, setStepIndex] = useState(0);
-  const isFirstStep = stepIndex === 0;
   const isLastStep = stepIndex === steps.length - 1;
   const stepValue = stepIndex + 1;
 
@@ -699,14 +698,21 @@ export default function HomePage() {
             {steps[stepIndex].content}
           </div>
           <div className="flex justify-between">
-            <Button
-              variant="outline"
-              type="button"
-              onClick={goPrev}
-              disabled={isFirstStep}
-            >
-              Previous
-            </Button>
+            {["insurance-selection", "addon-selection"].includes(
+              steps[stepIndex].id
+            ) ? (
+              <Button
+                variant="outline"
+                type="button"
+                onClick={goPrev}
+                className="bg-white! border! border-black! text-black!"
+              >
+                Previous
+              </Button>
+            ) : (
+              <div />
+            )}
+
             <Button
               type={isLastStep ? "submit" : "button"}
               onClick={isLastStep ? undefined : goNext}
