@@ -24,16 +24,18 @@ export default function MainPage() {
       });
 
       const chatSessionId = response.data.chat_session_id;
-
-      console.log("Chat session created:", response.data);
+      const bookingStatus = response.data.booking_status;
 
       sessionStorage.setItem("bookingId", bookingId);
+      if (chatSessionId) sessionStorage.setItem("chatSessionId", chatSessionId);
+      if (bookingStatus) sessionStorage.setItem("bookingStatus", bookingStatus);
 
-      navigate("/home", {
-        state: { chatSessionId },
-      });
+      if (bookingStatus === "COMPLETED") {
+        navigate("/remote", { state: { chatSessionId } });
+      } else {
+        navigate("/home", { state: { chatSessionId } });
+      }
     } catch (err: any) {
-      console.error(err);
       setError(
         err?.response?.data?.detail ||
           "Could not start chat session. Please check the booking ID."
