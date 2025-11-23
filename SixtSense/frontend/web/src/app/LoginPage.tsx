@@ -3,89 +3,100 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
-// import { AlertCircleIcon, CheckCircleIcon } from 'lucide-react';
+// IMPORT YOUR AXIOS INSTANCE
+import api from "@/api/api";
 
-// import { LoginForm } from '@/components/auth/LoginForm';
-// import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+export default function MainPage() {
+  const [bookingId, setBookingId] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [chatSessionId, setChatSessionId] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login submitted", { email, password });
+    setError(null);
+    setLoading(true);
+
+    try {
+      const response = await api.post("/api/ai-engine/start/", {
+        booking_id: bookingId,
+      });
+
+      setChatSessionId(response.data.chat_session_id);
+      console.log("Chat session created:", response.data);
+      navigate("/home", {
+        state: { chatSessionId: response.data.chat_session_id },
+      });
+    } catch (err: any) {
+      console.error(err);
+      setError(
+        err?.response?.data?.detail ||
+          "Could not start chat session. Please check the booking ID."
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    // <div className="flex min-h-[calc(100vh-3rem)] w-full items-center justify-center p-6 md:p-10 bg-muted">
-    //   <div className="w-full max-w-sm">
-    //     {error !== '' && (
-    //       <div className="mb-10 shadow-sm rounded-xl">
-    //         <Alert variant="destructive">
-    //           <AlertCircleIcon />
-    //           <AlertTitle>Sign in failed, please try again.</AlertTitle>
-    //           <AlertDescription>
-    //             <p>{error}</p>
-    //           </AlertDescription>
-    //         </Alert>
-    //       </div>
-    //     )}
-    //     {confirm !== '' && (
-    //       <div className="mb-10 shadow-sm rounded-xl">
-    //         <Alert variant="default">
-    //           <CheckCircleIcon />
-    //           <AlertTitle>
-    //             {confirm === '1' ? 'Sign up successful.' : 'Account activated.'}
-    //           </AlertTitle>
-    //           <AlertDescription>
-    //             <p>
-    //               {confirm === '1'
-    //                 ? 'Please confirm your address by clicking on the link in the E-Mail we just sent you. Afterwards you can login into your account.'
-    //                 : 'Your account is now active. Please login with the credentials you provided during registration.'}
-    //             </p>
-    //           </AlertDescription>
-    //         </Alert>
-    //       </div>
-    //     )}
-    //     <LoginForm />
-    //   </div>
-    // </div>
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-zinc-900 to-orange-600 p-4">
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
+        className="w-full max-w-md"
       >
-        <Card className="w-full max-w-sm shadow-xl rounded-2xl">
-          <CardContent className="p-6 space-y-6">
-            <h1 className="text-2xl font-bold text-center">Login</h1>
+        <Card className="shadow-2xl rounded-3xl border border-orange-500/40 bg-black/90 backdrop-blur">
+          <CardContent className="p-8 space-y-6">
+            <div className="text-center space-y-2">
+              <p className="text-xs tracking-[0.25em] text-orange-400 font-semibold uppercase">
+                SIXT • AI ASSISTANT
+              </p>
+              <h1 className="text-3xl font-extrabold text-white">
+                Welcome to SixtSense
+              </h1>
+              <p className="text-sm text-zinc-300">
+                Enter your <strong>booking ID</strong> and let our AI assistant
+                optimize your car upgrade.
+              </p>
+            </div>
+
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium mb-1">Email</label>
-                <Input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1">
-                  Password
+              <div className="space-y-2">
+                <label className="block text-sm font-medium text-zinc-200">
+                  Booking ID
                 </label>
                 <Input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
+                  value={bookingId}
+                  onChange={(e) => setBookingId(e.target.value)}
+                  placeholder="e.g. AB1234567"
                   required
+                  className="bg-zinc-900/70 border-zinc-700 focus-visible:ring-orange-500 text-zinc-100 placeholder:text-zinc-500"
                 />
               </div>
-              <Button type="submit" className="w-full rounded-xl py-2">
-                Sign In
+
+              {error && (
+                <div className="text-sm text-red-400 bg-red-900/20 border border-red-500/40 rounded-xl px-3 py-2">
+                  {error}
+                </div>
+              )}
+
+              {chatSessionId && (
+                <div className="text-sm text-emerald-400 bg-emerald-900/20 border border-emerald-500/40 rounded-xl px-3 py-2">
+                  Chat session started:{" "}
+                  <span className="font-mono">{chatSessionId}</span>
+                </div>
+              )}
+
+              <Button
+                type="submit"
+                disabled={loading || !bookingId}
+                className="w-full rounded-2xl py-2.5 bg-orange-500 hover:bg-orange-600 text-black shadow-lg shadow-orange-500/40 font-semibold"
+              >
+                {loading ? "Starting..." : "Start AI Upgrade Session"}
               </Button>
             </form>
           </CardContent>

@@ -10,6 +10,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useLocation, useNavigate } from "react-router-dom";
+import api from "@/api/api";
 
 type ChatMessage = {
   id: number;
@@ -30,6 +32,18 @@ export default function Chatbot() {
 
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  const chatSessionId = (location.state as { chatSessionId?: string } | null)
+    ?.chatSessionId;
+
+  // If for some reason there's no chatSessionId, send user back to login
+  useEffect(() => {
+    if (!chatSessionId) {
+      navigate("/", { replace: true });
+    }
+  }, [chatSessionId, navigate]);
+
   // auto-scroll to latest message
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -38,7 +52,7 @@ export default function Chatbot() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const text = input.trim();
-    if (!text || isSending) return;
+    if (!text || isSending || !chatSessionId) return;
 
     const userMessage: ChatMessage = {
       id: Date.now(),
@@ -52,24 +66,18 @@ export default function Chatbot() {
     setIsSending(true);
 
     try {
-      // 🔌 Call your backend here
-      // This assumes you have an endpoint POST /api/chat that returns: { reply: string }
-      const res = await fetch("/ai-engine/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: updatedMessages.map((m) => ({
-            role: m.role,
-            content: m.content,
-          })),
-        }),
+      // 🔌 Call Django backend using your Axios instance
+      const res = await api.post("/api/ai-engine/chat/", {
+        chat_session_id: chatSessionId,
+        message: text,
+        // Optionally also send history if your BE wants it:
+        messages: updatedMessages.map((m) => ({
+          role: m.role,
+          content: m.content,
+        })),
       });
 
-      if (!res.ok) {
-        throw new Error("Request failed");
-      }
-
-      const data: { reply: string } = await res.json();
+      const data: { reply: string } = res.data;
 
       const botMessage: ChatMessage = {
         id: Date.now() + 1,
@@ -83,7 +91,8 @@ export default function Chatbot() {
       const errorMessage: ChatMessage = {
         id: Date.now() + 2,
         role: "assistant",
-        content: "Sorry, something went wrong while contacting the server.",
+        content:
+          "Sorry, something went wrong while contacting the server. Please try again.",
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
@@ -94,7 +103,9 @@ export default function Chatbot() {
   return (
     <Card className="w-full max-w-lg h-[80vh] flex flex-col rounded-2xl shadow-md">
       <CardHeader>
-        <CardTitle className="text-lg font-semibold">Chatbot</CardTitle>
+        <CardTitle className="text-lg font-semibold">
+          SixtSense • AI Upgrade Assistant
+        </CardTitle>
       </CardHeader>
 
       <CardContent className="flex-1 px-4">
@@ -146,7 +157,7 @@ export default function Chatbot() {
             onChange={(e) => setInput(e.target.value)}
             disabled={isSending}
           />
-          <Button type="submit" disabled={isSending}>
+          <Button type="submit" disabled={isSending || !chatSessionId}>
             {isSending ? "Sending..." : "Send"}
           </Button>
         </form>
