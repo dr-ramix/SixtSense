@@ -3,6 +3,15 @@ import AddOnSelection from "@/components/carConfiguration/AddOnSelection";
 import InsuranceSelection from "@/components/carConfiguration/InsuranceSelection";
 import Chatbot from "@/components/chat/Chatbot";
 import { Button } from "@/components/ui/button";
+import {
+  Stepper,
+  StepperIndicator,
+  StepperItem,
+  StepperNav,
+  StepperSeparator,
+  StepperTitle,
+  StepperTrigger,
+} from "@/components/ui/stepper";
 import { Car } from "@/domain/Car";
 import { AddOn, AddOnOption } from "@/domain/AddOn";
 import { Protection } from "@/domain/Protection";
@@ -61,11 +70,19 @@ const sampleCars: Car[] = [
   sampleCar,
   {
     ...sampleCar,
-    vehicle: { ...sampleCar.vehicle, id: "1a1257a0-e495-43ff-b213-9786338e159c", model: "GOLF VARIANT" },
+    vehicle: {
+      ...sampleCar.vehicle,
+      id: "1a1257a0-e495-43ff-b213-9786338e159c",
+      model: "GOLF VARIANT",
+    },
   },
   {
     ...sampleCar,
-    vehicle: { ...sampleCar.vehicle, id: "1a1257a0-e495-43ff-b213-9786338e159d", model: "GOLF GTI" },
+    vehicle: {
+      ...sampleCar.vehicle,
+      id: "1a1257a0-e495-43ff-b213-9786338e159d",
+      model: "GOLF GTI",
+    },
   },
 ];
 
@@ -512,6 +529,7 @@ export default function HomePage() {
   const steps = [
     {
       id: "car-selection",
+      label: "Car",
       content: (
         <CarSelection
           cars={sampleCars}
@@ -522,6 +540,7 @@ export default function HomePage() {
     },
     {
       id: "insurance-selection",
+      label: "Insurance",
       content: (
         <div className="w-full flex flex-col gap-3 overflow-y-auto pr-1">
           <InsuranceSelection
@@ -534,6 +553,7 @@ export default function HomePage() {
     },
     {
       id: "addon-selection",
+      label: "Add-ons",
       content: (
         <AddOnSelection
           addOns={sampleAddOns}
@@ -547,6 +567,7 @@ export default function HomePage() {
   const [stepIndex, setStepIndex] = useState(0);
   const isFirstStep = stepIndex === 0;
   const isLastStep = stepIndex === steps.length - 1;
+  const stepValue = stepIndex + 1;
 
   const goPrev = () => setStepIndex((i) => Math.max(0, i - 1));
   const goNext = () => setStepIndex((i) => Math.min(steps.length - 1, i + 1));
@@ -564,15 +585,44 @@ export default function HomePage() {
 
       {/* Right side - Configuration */}
       <div className="w-1/2 p-6 flex flex-col gap-4 bg-white">
-        <form
-          onSubmit={handleSubmit}
-          className="flex-1 flex flex-col gap-4"
-        >
+        <form onSubmit={handleSubmit} className="flex-1 flex flex-col gap-4">
+          <Stepper
+            value={stepValue}
+            onValueChange={(val) =>
+              setStepIndex(Math.min(steps.length - 1, Math.max(0, val - 1)))
+            }
+            className="space-y-3"
+          >
+            <StepperNav className="items-center gap-4">
+              {steps.map((step, idx) => (
+                <StepperItem
+                  key={step.id}
+                  step={idx + 1}
+                  className="gap-2 flex-col items-center text-center"
+                >
+                  <StepperTrigger className="px-3 py-2 hover:bg-accent transition flex-col items-center gap-2 text-center">
+                    <StepperTitle className="text-xs font-semibold uppercase tracking-wide">
+                      {step.label}
+                    </StepperTitle>
+                    <StepperIndicator>{idx + 1}</StepperIndicator>
+                  </StepperTrigger>
+                  {idx < steps.length - 1 && (
+                    <StepperSeparator className="group-data-[state=completed]/step:bg-primary" />
+                  )}
+                </StepperItem>
+              ))}
+            </StepperNav>
+          </Stepper>
           <div className="flex-1 flex items-center justify-center">
             {steps[stepIndex].content}
           </div>
           <div className="flex justify-between">
-            <Button variant="outline" type="button" onClick={goPrev} disabled={isFirstStep}>
+            <Button
+              variant="outline"
+              type="button"
+              onClick={goPrev}
+              disabled={isFirstStep}
+            >
               Previous
             </Button>
             <Button

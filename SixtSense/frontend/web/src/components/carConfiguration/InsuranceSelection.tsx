@@ -24,8 +24,8 @@ export default function InsuranceSelection({
             key={protection.id}
             className={`relative w-full m-0 p-3 h-40 flex flex-1 flex-row items-center justify-start rounded-2xl shadow-md overflow-hidden border transition cursor-pointer ${
               isSelected
-                ? "border-transparent bg-primary/5"
-                : "border-transparent hover:border-primary/40 hover:ring-1 hover:ring-primary/20"
+                ? "border-border/70 bg-primary/5"
+                : "border-border/70 hover:border-primary/60 hover:ring-1 hover:ring-primary/20"
             }`}
             onClick={() => onSelect(protection)}
             role="button"

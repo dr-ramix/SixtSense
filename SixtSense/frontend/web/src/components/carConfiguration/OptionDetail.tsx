@@ -17,8 +17,8 @@ export default function OptionDetail({
     <Card
       className={`relative overflow-hidden p-3 w-full flex-shrink-0 border cursor-pointer transition ${
         selected
-          ? "border-transparent bg-primary/5"
-          : "border-transparent hover:border-primary/40 hover:ring-1 hover:ring-primary/20"
+          ? "border-border/70 bg-primary/5"
+          : "border-border/70 hover:border-primary/60 hover:ring-1 hover:ring-primary/20"
       }`}
       onClick={() => onToggle?.(option)}
       role="button"
