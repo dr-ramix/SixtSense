@@ -791,10 +791,13 @@ export default function HomePage() {
 
   const goPrev = () => setStepIndex((i) => Math.max(0, i - 1));
   const goNext = () => setStepIndex((i) => Math.min(steps.length - 1, i + 1));
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+
+  // now only called explicitly from the Submit button
+  const handleSubmit = (e?: FormEvent<HTMLFormElement>) => {
+    e?.preventDefault();
     setIsReviewOpen(true);
   };
+
   const finalizeBooking = () => {
     console.log("Final booking:", selection);
     setIsReviewOpen(false);
@@ -809,7 +812,11 @@ export default function HomePage() {
 
       {/* Right side - Configuration */}
       <div className="w-1/2 p-6 flex flex-col gap-4 bg-white">
-        <form onSubmit={handleSubmit} className="flex-1 flex flex-col gap-4">
+        {/* prevent default submit, but don't open dialog here */}
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="flex-1 flex flex-col gap-4"
+        >
           <Stepper
             value={stepValue}
             onValueChange={(val) =>
@@ -859,8 +866,8 @@ export default function HomePage() {
             )}
 
             <Button
-              type={isLastStep ? "submit" : "button"}
-              onClick={isLastStep ? undefined : goNext}
+              type="button"
+              onClick={isLastStep ? () => handleSubmit() : goNext}
             >
               {isLastStep ? "Submit" : "Next"}
             </Button>
