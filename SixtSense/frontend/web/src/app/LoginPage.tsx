@@ -27,6 +27,8 @@ export default function MainPage() {
 
       console.log("Chat session created:", response.data);
 
+      sessionStorage.setItem("bookingId", bookingId);
+
       navigate("/home", {
         state: { chatSessionId },
       });
