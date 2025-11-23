@@ -24,7 +24,7 @@ export default function InsuranceSelection({
           return (
             <Card
               key={protection.id}
-              className={`relative w-full m-0 p-3 h-40 flex flex-1 flex-row items-center justify-start rounded-2xl shadow-md overflow-hidden border transition cursor-pointer ${
+              className={`relative w-full m-0 p-4 h-40 flex flex-1 flex-row items-center justify-start rounded-2xl shadow-md overflow-hidden border transition cursor-pointer ${
                 isSelected
                   ? "border-border/70 bg-primary/5"
                   : "border-border/70 hover:border-primary/60 hover:ring-1 hover:ring-primary/20"
@@ -34,39 +34,58 @@ export default function InsuranceSelection({
               tabIndex={0}
             >
               {isSelected && <BackgroundGradient />}
-              <div className="relative z-10 grid grid-cols-2 gap-x-4 gap-y-1 text-sm align-top justify-start w-full">
-                {/* Row 1 */}
-                <div className="font-semibold justify-self-start">
-                  {protection.name}
-                </div>
-                <div className="font-large font-bold justify-self-end pr-4 flex items-center gap-1">
-                  {[...Array(protection.ratingStars)].map((_, i) => (
-                    <Star key={i} className="inline-block w-4 h-4 opacity-70" />
-                  ))}
-                </div>
 
-                {/* Row 2 */}
-                <div className="justify-self-start">
-                  {protection.includes.length !== 0 && <div>Includes:</div>}
-                  {protection.includes.map((include) => (
-                    <CoverageItemDetails key={include.id} item={include} />
-                  ))}
-                </div>
+              {(() => {
+                const hasIncludes = protection.includes.length > 0;
+                const hasExcludes = protection.excludes.length > 0;
+                const twoColumns = hasIncludes && hasExcludes;
 
-                <div className="justify-self-start">
-                  {protection.excludes.length !== 0 && <div>Excludes:</div>}
-                  {protection.excludes.map((exclude) => (
-                    <CoverageItemDetails key={exclude.id} item={exclude} />
-                  ))}
-                </div>
+                return (
+                  <div
+                    className={`
+                      relative z-10 grid gap-x-4 gap-y-1 text-sm w-full
+                      justify-items-center text-center
+                      ${twoColumns ? "grid-cols-2" : "grid-cols-1"}
+                    `}
+                  >
+                    {/* Row 1 */}
+                    <div className="font-semibold justify-self-start">
+                      {protection.name}
+                    </div>
+                    <div className="font-large font-bold justify-self-end pr-4 flex items-center gap-1">
+                      {[...Array(protection.ratingStars)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="inline-block w-4 h-4 opacity-70"
+                        />
+                      ))}
+                    </div>
 
-                {/* Row 3 */}
-                <div className="font-large font-bold justify-self-end col-span-2 pr-4">
-                  {protection.price.totalPrice.currency}{" "}
-                  {protection.price.totalPrice.amount}
-                  {protection.price.totalPrice.suffix}
-                </div>
-              </div>
+                    {/* Excludes */}
+                    <div className={twoColumns ? "" : "col-span-2"}>
+                      {hasExcludes && <div>Excludes:</div>}
+                      {protection.excludes.map((exclude) => (
+                        <CoverageItemDetails key={exclude.id} item={exclude} />
+                      ))}
+                    </div>
+
+                    {/* Includes */}
+                    <div className={twoColumns ? "" : "col-span-2"}>
+                      {hasIncludes && <div>Includes:</div>}
+                      {protection.includes.map((include) => (
+                        <CoverageItemDetails key={include.id} item={include} />
+                      ))}
+                    </div>
+
+                    {/* Price */}
+                    <div className="font-large font-bold justify-self-end col-span-2 pr-4">
+                      {protection.price.totalPrice.currency}{" "}
+                      {protection.price.totalPrice.amount}
+                      {protection.price.totalPrice.suffix}
+                    </div>
+                  </div>
+                );
+              })()}
             </Card>
           );
         })}

@@ -18,72 +18,214 @@ import { Protection } from "@/domain/Protection";
 import { FormEvent, useState } from "react";
 import { SubmitDialog } from "@/components/submitDialog/SubmitDialog";
 
-const sampleCar: Car = {
-  vehicle: {
-    id: "1a1257a0-e495-43ff-b213-9786338e159b",
-    brand: "VOLKSWAGEN",
-    model: "GOLF",
-    acrissCode: "CDAR",
-    images: [
-      "https://vehicle-pictures-prod.orange.sixt.com/143707/9d9d9c/18_1.png",
-    ],
-    bagsCount: 0,
-    passengersCount: 5,
-    groupType: "SEDAN",
-    tyreType: "All-year tyres",
-    transmissionType: "Automatic",
-    fuelType: "Petrol",
-    isNewCar: true,
-    isRecommended: false,
-    isMoreLuxury: false,
-    isExcitingDiscount: false,
-    attributes: [
-      {
-        key: "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
-        title: "Transmission",
-        value: "Automatic",
-        attributeType: "CARD_ATTRIBUTE",
-        iconUrl:
-          "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png",
-      },
-      {
-        key: "P100_VEHICLE_ATTRIBUTE_SEATS",
-        title: "Seats",
-        value: "5",
-        attributeType: "CARD_ATTRIBUTE",
-        iconUrl: "https://www.sixt.com/shared/icons/trex/p100/seat.png",
-      },
-    ],
-    vehicleStatus: "AVAILABLE",
-    vehicleCost: { currency: "EUR", value: 36400 },
-    upsellReasons: [],
-  },
-  pricing: {
-    discountPercentage: 0,
-    displayPrice: { currency: "EUR", amount: 0, prefix: "+", suffix: "/day" },
-    totalPrice: { currency: "EUR", amount: 0, prefix: "", suffix: "in total" },
-  },
-  dealInfo: "BOOKED_CATEGORY",
-  tags: [],
-};
-
-const sampleCars: Car[] = [
-  sampleCar,
+export const sampleCars: Car[] = [
   {
-    ...sampleCar,
     vehicle: {
-      ...sampleCar.vehicle,
-      id: "1a1257a0-e495-43ff-b213-9786338e159c",
-      model: "GOLF VARIANT",
+      id: "afc8d944-b855-4a80-bace-360c43e08411",
+      brand: "SKODA",
+      model: "ENYAQ",
+      acrissCode: "SFAE",
+      images: [
+        "https://vehicle-pictures-prod.orange.sixt.com/142547/ffffff/18_1.png",
+      ],
+      bagsCount: 0,
+      passengersCount: 5,
+      groupType: "SUV",
+      tyreType: "All-year tyres",
+      transmissionType: "Automatic",
+      fuelType: "Electric",
+      isNewCar: true,
+      isRecommended: true,
+      isMoreLuxury: false,
+      isExcitingDiscount: true,
+      attributes: [
+        {
+          key: "P100_VEHICLE_ATTRIBUTE_SEATS",
+          title: "Seats",
+          value: "5",
+          attributeType: "CARD_ATTRIBUTE",
+          iconUrl: "https://www.sixt.com/shared/icons/trex/p100/seat.png",
+        },
+        {
+          key: "P100_VEHICLE_UPSELL_ATTRIBUTE_NEW_VEHICLE",
+          title: "New vehicle",
+          value: "New vehicle",
+          attributeType: "UPSELL_ATTRIBUTE",
+          iconUrl: "",
+        },
+        {
+          key: "P100_VEHICLE_UPSELL_ATTRIBUTE_NAVIGATION",
+          title: "Built-in navigation",
+          value: "Built-in navigation",
+          attributeType: "UPSELL_ATTRIBUTE",
+          iconUrl: "",
+        },
+      ],
+      vehicleStatus: "AVAILABLE",
+      vehicleCost: { currency: "EUR", value: 50700 },
+      upsellReasons: [],
     },
+    pricing: {
+      discountPercentage: 30,
+      displayPrice: {
+        currency: "EUR",
+        amount: 9.45,
+        prefix: "+",
+        suffix: "/day",
+      },
+      totalPrice: {
+        currency: "EUR",
+        amount: 47.25,
+        prefix: "",
+        suffix: "in total",
+      },
+    },
+    dealInfo: "DISCOUNT",
+    tags: [],
   },
   {
-    ...sampleCar,
     vehicle: {
-      ...sampleCar.vehicle,
-      id: "1a1257a0-e495-43ff-b213-9786338e159d",
-      model: "GOLF GTI",
+      id: "138cc34b-7c44-4a0d-aa4f-346d0780a68d",
+      brand: "OPEL",
+      model: "ASTRA",
+      acrissCode: "CWAR",
+      images: [
+        "https://vehicle-pictures-prod.orange.sixt.com/143056/9d9d9c/18_1.png",
+      ],
+      bagsCount: 4,
+      passengersCount: 5,
+      groupType: "WAGON",
+      tyreType: "All-year tyres",
+      transmissionType: "Automatic",
+      fuelType: "Petrol",
+      isNewCar: false,
+      isRecommended: true,
+      isMoreLuxury: false,
+      isExcitingDiscount: true,
+      attributes: [
+        {
+          key: "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+          title: "Transmission",
+          value: "Automatic",
+          attributeType: "CARD_ATTRIBUTE",
+          iconUrl:
+            "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png",
+        },
+        {
+          key: "P100_VEHICLE_ATTRIBUTE_SEATS",
+          title: "Seats",
+          value: "5",
+          attributeType: "CARD_ATTRIBUTE",
+          iconUrl: "https://www.sixt.com/shared/icons/trex/p100/seat.png",
+        },
+        {
+          key: "P100_VEHICLE_ATTRIBUTE_BOOT_CAPACITY",
+          title: "Trunk capacity",
+          value: "4",
+          attributeType: "CARD_ATTRIBUTE",
+          iconUrl: "https://www.sixt.com/shared/icons/trex/p100/bags.png",
+        },
+        {
+          key: "P100_VEHICLE_UPSELL_ATTRIBUTE_NAVIGATION",
+          title: "Built-in navigation",
+          value: "Built-in navigation",
+          attributeType: "UPSELL_ATTRIBUTE",
+          iconUrl: "",
+        },
+      ],
+      vehicleStatus: "AVAILABLE",
+      vehicleCost: { currency: "EUR", value: 37500 },
+      upsellReasons: [],
     },
+    pricing: {
+      discountPercentage: 10,
+      displayPrice: {
+        currency: "EUR",
+        amount: 9.62,
+        prefix: "+",
+        suffix: "/day",
+      },
+      totalPrice: {
+        currency: "EUR",
+        amount: 48.1,
+        prefix: "",
+        suffix: "in total",
+      },
+    },
+    dealInfo: "DISCOUNT",
+    tags: [],
+  },
+  {
+    vehicle: {
+      id: "580f3653-c314-49a3-b0fb-9de84498edcf",
+      brand: "PEUGEOT",
+      model: "408",
+      acrissCode: "IDAH",
+      images: [
+        "https://vehicle-pictures-prod.orange.sixt.com/143210/1e1e1e/18_1.png",
+      ],
+      bagsCount: 0,
+      passengersCount: 5,
+      groupType: "SEDAN",
+      tyreType: "All-year tyres",
+      transmissionType: "Automatic",
+      fuelType: "Hybrid",
+      isNewCar: false,
+      isRecommended: true,
+      isMoreLuxury: false,
+      isExcitingDiscount: false,
+      attributes: [
+        {
+          key: "P100_VEHICLE_ATTRIBUTE_AUTOMATIC",
+          title: "Transmission",
+          value: "Automatic",
+          attributeType: "CARD_ATTRIBUTE",
+          iconUrl:
+            "https://www.sixt.com/shared/icons/trex/p100/gearbox_automatic.png",
+        },
+        {
+          key: "P100_VEHICLE_ATTRIBUTE_SEATS",
+          title: "Seats",
+          value: "5",
+          attributeType: "CARD_ATTRIBUTE",
+          iconUrl: "https://www.sixt.com/shared/icons/trex/p100/seat.png",
+        },
+        {
+          key: "P100_VEHICLE_UPSELL_ATTRIBUTE_KEYLESS_IGNITION",
+          title: "Keyless ignition",
+          value: "Keyless ignition",
+          attributeType: "UPSELL_ATTRIBUTE",
+          iconUrl: "",
+        },
+        {
+          key: "P100_VEHICLE_UPSELL_ATTRIBUTE_BLUETOOTH",
+          title: "Bluetooth connectivity",
+          value: "Bluetooth connectivity",
+          attributeType: "UPSELL_ATTRIBUTE",
+          iconUrl: "",
+        },
+      ],
+      vehicleStatus: "AVAILABLE",
+      vehicleCost: { currency: "EUR", value: 47700 },
+      upsellReasons: [],
+    },
+    pricing: {
+      discountPercentage: 0,
+      displayPrice: {
+        currency: "EUR",
+        amount: 12.17,
+        prefix: "+",
+        suffix: "/day",
+      },
+      totalPrice: {
+        currency: "EUR",
+        amount: 60.85,
+        prefix: "",
+        suffix: "in total",
+      },
+    },
+    dealInfo: "DISCOUNT",
+    tags: [],
   },
 ];
 
@@ -598,16 +740,11 @@ export default function HomePage() {
     tags: c.tags ?? [],
   });
 
-  // 🔥 NEW: called by Chatbot when AI responds
   const handleAiUpdate = (data: ChatApiResponse) => {
     if (data.cars && data.cars.length) {
       const mappedCars = data.cars.map(mapBackendCarToCar);
       setCars(mappedCars);
     }
-
-    // later you can also:
-    // - map data.protections -> Protection[]
-    // - map data.addons -> AddOn[]
   };
 
   const steps = [

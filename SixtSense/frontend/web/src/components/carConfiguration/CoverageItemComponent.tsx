@@ -20,7 +20,7 @@ export default function CoverageItemDetails({ item }: CoberageItemProps) {
 
         <Tooltip>
           <TooltipTrigger asChild>
-            <Info className="inline-block w-3 h-3 opacity-50 ml-1 cursor-pointer" />
+            <Info className="inline-block w-3 h-3 opacity-50 ml-1 cursor-pointer flex-shrink-0" />
           </TooltipTrigger>
           <TooltipContent className="max-w-xs">
             <p>{item.description}</p>

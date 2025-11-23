@@ -15,7 +15,7 @@ export default function OptionDetail({
 }: OptionDetailProps) {
   return (
     <Card
-      className={`relative overflow-hidden p-3 w-full flex-shrink-0 border cursor-pointer transition ${
+      className={`relative overflow-hidden p-4 w-full flex-shrink-0 border cursor-pointer transition ${
         selected
           ? "border-border/70 bg-primary/5"
           : "border-border/70 hover:border-primary/60 hover:ring-1 hover:ring-primary/20"
@@ -28,7 +28,7 @@ export default function OptionDetail({
       <div className="relative z-10 flex justify-between items-start w-full">
         <div className="font-medium">{option.chargeDetail.title}</div>
 
-        <div className="text-sm opacity-80 whitespace-nowrap">
+        <div className="text-sm font-bold justify-self-end pr-8">
           {option.additionalInfo.price.displayPrice.currency}{" "}
           {option.additionalInfo.price.displayPrice.amount}
           {option.additionalInfo.price.displayPrice.suffix}
