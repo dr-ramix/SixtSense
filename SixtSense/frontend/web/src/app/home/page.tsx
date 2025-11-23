@@ -579,7 +579,7 @@ export default function HomePage() {
   return (
     <div className="flex min-h-screen w-full">
       {/* Left side - Chatbot */}
-      <div className="w-1/2 border-r p-6 flex items-center justify-center bg-gray-50">
+      <div className="w-1/2 border-r p-6 flex items-center justify-center bg-gradient-to-br from-black via-zinc-900 to-orange-600">
         <Chatbot />
       </div>
 

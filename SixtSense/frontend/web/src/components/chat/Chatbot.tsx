@@ -70,22 +70,38 @@ export default function Chatbot() {
       const res = await api.post("/api/ai-engine/chat/", {
         chat_session_id: chatSessionId,
         message: text,
-        // Optionally also send history if your BE wants it:
         messages: updatedMessages.map((m) => ({
           role: m.role,
           content: m.content,
         })),
       });
 
-      const data: { reply: string } = res.data;
-
-      const botMessage: ChatMessage = {
-        id: Date.now() + 1,
-        role: "assistant",
-        content: data.reply,
+      type BackendMessage = {
+        role: "user" | "assistant";
+        content: string;
+        created_at: string;
       };
 
-      setMessages((prev) => [...prev, botMessage]);
+      type ChatApiResponse = {
+        chat_session_id: string;
+        messages: BackendMessage[];
+      };
+
+      const data: ChatApiResponse = res.data;
+
+      const lastAssistant = [...data.messages]
+        .reverse()
+        .find((m) => m.role === "assistant");
+
+      if (lastAssistant) {
+        const botMessage: ChatMessage = {
+          id: Date.now() + 1,
+          role: "assistant",
+          content: lastAssistant.content,
+        };
+
+        setMessages((prev) => [...prev, botMessage]);
+      }
     } catch (err) {
       console.error(err);
       const errorMessage: ChatMessage = {
@@ -103,9 +119,7 @@ export default function Chatbot() {
   return (
     <Card className="w-full max-w-lg h-[80vh] flex flex-col rounded-2xl shadow-md">
       <CardHeader>
-        <CardTitle className="text-lg font-semibold">
-          SixtSense • AI Upgrade Assistant
-        </CardTitle>
+        <CardTitle className="text-lg font-semibold">SixtSense</CardTitle>
       </CardHeader>
 
       <CardContent className="flex-1 px-4">
