@@ -496,6 +496,32 @@ const sampleAddOns: AddOn[] = [
   },
 ];
 
+type BackendCar = {
+  id: string;
+  name: string;
+  brand: string;
+  model: string;
+  image: string;
+  groupType: string;
+  passengers: number;
+  bags: number;
+  transmission: string;
+  fuelType: string;
+  daily_price: number;
+  total_price: number;
+  currency: string;
+  tags: string[];
+};
+
+type ChatApiResponse = {
+  chat_session_id: string;
+  messages: any[];
+  cars: BackendCar[];
+  protections: any[];
+  addons: any[];
+  state: any;
+};
+
 export default function HomePage() {
   const [selection, setSelection] = useState<{
     car: Car | null;
@@ -506,6 +532,8 @@ export default function HomePage() {
     protection: null,
     addOnOptions: [],
   });
+
+  const [cars, setCars] = useState<Car[]>(sampleCars);
 
   const handleCarSelect = (car: Car) =>
     setSelection((prev) => ({ ...prev, car }));
@@ -526,13 +554,67 @@ export default function HomePage() {
       };
     });
 
+  const mapBackendCarToCar = (c: BackendCar): Car => ({
+    vehicle: {
+      id: c.id,
+      brand: c.brand,
+      model: c.model,
+      acrissCode: "", // unknown here
+      images: [c.image],
+      bagsCount: c.bags,
+      passengersCount: c.passengers,
+      groupType: c.groupType,
+      tyreType: "All-year tyres",
+      transmissionType: c.transmission,
+      fuelType: c.fuelType,
+      isNewCar: c.tags?.includes("New") ?? false,
+      isRecommended: c.tags?.includes("Recommended") ?? false,
+      isMoreLuxury: false,
+      isExcitingDiscount:
+        c.tags?.some((t) => t.toLowerCase().includes("% off")) ?? false,
+      attributes: [],
+      vehicleStatus: "AVAILABLE",
+      vehicleCost: { currency: c.currency, value: c.total_price },
+      upsellReasons: [],
+    },
+    pricing: {
+      discountPercentage: 0,
+      displayPrice: {
+        currency: c.currency,
+        amount: c.daily_price,
+        prefix: "+",
+        suffix: "/day",
+      },
+      totalPrice: {
+        currency: c.currency,
+        amount: c.total_price,
+        prefix: "",
+        suffix: "in total",
+      },
+    },
+    dealInfo: "BOOKED_CATEGORY",
+    tags: c.tags ?? [],
+  });
+
+  // 🔥 NEW: called by Chatbot when AI responds
+  const handleAiUpdate = (data: ChatApiResponse) => {
+    if (data.cars && data.cars.length) {
+      const mappedCars = data.cars.map(mapBackendCarToCar);
+      setCars(mappedCars);
+    }
+
+    // later you can also:
+    // - map data.protections -> Protection[]
+    // - map data.addons -> AddOn[]
+  };
+
   const steps = [
     {
       id: "car-selection",
       label: "Car",
       content: (
         <CarSelection
-          cars={sampleCars}
+          cars={cars}
           selectedCar={selection.car}
           onSelect={handleCarSelect}
         />
@@ -580,7 +662,7 @@ export default function HomePage() {
     <div className="flex min-h-screen w-full">
       {/* Left side - Chatbot */}
       <div className="w-1/2 border-r p-6 flex items-center justify-center bg-gradient-to-br from-black via-zinc-900 to-orange-600">
-        <Chatbot />
+        <Chatbot onAiUpdate={handleAiUpdate} />
       </div>
 
       {/* Right side - Configuration */}

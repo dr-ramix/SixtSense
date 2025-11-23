@@ -19,7 +19,11 @@ type ChatMessage = {
   content: string;
 };
 
-export default function Chatbot() {
+type ChatbotProps = {
+  onAiUpdate?: (data: any) => void; // you can type this as ChatApiResponse if you like
+};
+
+export default function Chatbot({ onAiUpdate }: ChatbotProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 1,
@@ -66,7 +70,6 @@ export default function Chatbot() {
     setIsSending(true);
 
     try {
-      // 🔌 Call Django backend using your Axios instance
       const res = await api.post("/api/ai-engine/chat/", {
         chat_session_id: chatSessionId,
         message: text,
@@ -76,22 +79,17 @@ export default function Chatbot() {
         })),
       });
 
-      type BackendMessage = {
-        role: "user" | "assistant";
-        content: string;
-        created_at: string;
-      };
+      const data = res.data;
 
-      type ChatApiResponse = {
-        chat_session_id: string;
-        messages: BackendMessage[];
-      };
+      // ⬆️ Send cars/protections/addons up to HomePage
+      if (onAiUpdate) {
+        onAiUpdate(data);
+      }
 
-      const data: ChatApiResponse = res.data;
-
+      // ⬇️ Chat UI: append last assistant message
       const lastAssistant = [...data.messages]
         .reverse()
-        .find((m) => m.role === "assistant");
+        .find((m: any) => m.role === "assistant");
 
       if (lastAssistant) {
         const botMessage: ChatMessage = {
