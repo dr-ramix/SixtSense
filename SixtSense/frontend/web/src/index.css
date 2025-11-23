@@ -183,3 +183,48 @@ button:focus-visible {
     @apply bg-background text-foreground;
   }
 }
+
+.selected-card-border {
+  --border-width: 1px;
+  --duration: 14s;
+  position: absolute;
+  inset: 0;
+  padding: var(--border-width);
+  border-radius: inherit;
+  pointer-events: none;
+  background-position: 0% 50%;
+  background-size: 300% 300%;
+  background-image: radial-gradient(
+    transparent,
+    transparent,
+    #d24f40,
+    #ee877b,
+    #ffbe7b,
+    transparent,
+    transparent
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: selected-shine var(--duration) ease-in-out infinite;
+  will-change: background-position;
+}
+
+@keyframes selected-shine {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .selected-card-border {
+    animation: none;
+  }
+}

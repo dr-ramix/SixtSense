@@ -1,5 +1,6 @@
 import { AddOnOption } from "@/domain/AddOn";
 import { Card } from "../ui/card";
+import BackgroundGradient from "../ui/background-gradient";
 
 type OptionDetailProps = {
   option: AddOnOption;
@@ -14,16 +15,17 @@ export default function OptionDetail({
 }: OptionDetailProps) {
   return (
     <Card
-      className={`p-3 w-full flex-shrink-0 border cursor-pointer transition ${
+      className={`relative overflow-hidden p-3 w-full flex-shrink-0 border cursor-pointer transition ${
         selected
-          ? "border-primary ring-2 ring-primary/60"
+          ? "border-transparent bg-primary/5"
           : "border-transparent hover:border-primary/40 hover:ring-1 hover:ring-primary/20"
       }`}
       onClick={() => onToggle?.(option)}
       role="button"
       tabIndex={0}
     >
-      <div className="flex justify-between items-start w-full">
+      {selected && <BackgroundGradient />}
+      <div className="relative z-10 flex justify-between items-start w-full">
         <div className="font-medium">{option.chargeDetail.title}</div>
 
         <div className="text-sm opacity-80 whitespace-nowrap">
@@ -33,7 +35,9 @@ export default function OptionDetail({
         </div>
       </div>
 
-      <div className="mt-2 text-left">{option.chargeDetail.description}</div>
+      <div className="relative z-10 mt-2 text-left">
+        {option.chargeDetail.description}
+      </div>
     </Card>
   );
 }

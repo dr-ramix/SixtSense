@@ -2,6 +2,7 @@ import { Protection } from "@/domain/Protection";
 import { Star } from "lucide-react";
 import CoverageItemDetails from "./CoverageItemComponent";
 import { Card } from "../ui/card";
+import BackgroundGradient from "../ui/background-gradient";
 
 type IncuranceSelectionProps = {
   protections: Protection[];
@@ -21,16 +22,17 @@ export default function InsuranceSelection({
         return (
           <Card
             key={protection.id}
-            className={`w-full m-0 p-3 h-40 flex flex-1 flex-row items-center justify-start rounded-2xl shadow-md overflow-hidden border transition cursor-pointer ${
+            className={`relative w-full m-0 p-3 h-40 flex flex-1 flex-row items-center justify-start rounded-2xl shadow-md overflow-hidden border transition cursor-pointer ${
               isSelected
-                ? "border-primary ring-2 ring-primary/60 bg-primary/5"
+                ? "border-transparent bg-primary/5"
                 : "border-transparent hover:border-primary/40 hover:ring-1 hover:ring-primary/20"
             }`}
             onClick={() => onSelect(protection)}
             role="button"
             tabIndex={0}
           >
-            <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm align-top justify-start w-full">
+            {isSelected && <BackgroundGradient />}
+            <div className="relative z-10 grid grid-cols-2 gap-x-4 gap-y-1 text-sm align-top justify-start w-full">
               {/* Row 1 */}
               <div className="font-semibold justify-self-start">
                 {protection.name}
