@@ -4,6 +4,11 @@
 
 A hackaTUM 2025 project that helps SIXT customers find the perfect vehicle upgrade through natural conversation.
 
+Create you booking (booking_id) and find the AI sales guy here:
+
+https://sixt-sense.netlify.app/
+
+
 ---
 
 ## 💡 The Problem
