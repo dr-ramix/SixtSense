@@ -17,6 +17,7 @@ import { AddOn, AddOnOption } from "@/domain/AddOn";
 import { Protection } from "@/domain/Protection";
 import { FormEvent, useState } from "react";
 import { SubmitDialog } from "@/components/submitDialog/SubmitDialog";
+import { useNavigate } from "react-router-dom";
 
 export const sampleCars: Car[] = [
   {
@@ -678,6 +679,7 @@ export default function HomePage() {
 
   const [cars, setCars] = useState<Car[]>(sampleCars);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleCarSelect = (car: Car) =>
     setSelection((prev) => ({ ...prev, car }));
@@ -801,6 +803,8 @@ export default function HomePage() {
   const finalizeBooking = () => {
     console.log("Final booking:", selection);
     setIsReviewOpen(false);
+    sessionStorage.setItem("bookingStatus", "completed");
+    navigate("/remote");
   };
 
   return (
