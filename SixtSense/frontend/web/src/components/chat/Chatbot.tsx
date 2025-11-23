@@ -54,7 +54,7 @@ export default function Chatbot() {
     try {
       // 🔌 Call your backend here
       // This assumes you have an endpoint POST /api/chat that returns: { reply: string }
-      const res = await fetch("/api/chat", {
+      const res = await fetch("/ai-engine/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
