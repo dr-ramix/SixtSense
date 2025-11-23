@@ -13,8 +13,19 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 
+import os
+from dotenv import load_dotenv
+from pathlib import Path
+
 #FOR SECRET KEY (CREATE A .env FILE IN SAME LEVEL AS manage.py)
 from decouple import config
+
+OPENAI_API_KEY = config("OPENAI_API_KEY")
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+ENV_PATH = os.path.join(BASE_DIR, "..", ".env")
+load_dotenv(ENV_PATH)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -51,6 +62,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'booking',
     'sixtbridge',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
@@ -61,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -199,3 +212,6 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
+
+
+CORS_ALLOW_ALL_ORIGINS = True 
