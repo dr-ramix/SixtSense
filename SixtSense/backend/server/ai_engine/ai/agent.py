@@ -12,25 +12,28 @@ class SalesAgent:
     """
 
     def __init__(self):
+        # LLM
         self.llm = ChatOpenAI(
             model="gpt-4o-mini",
             temperature=0.4,
             max_tokens=2000,
             api_key=os.getenv("OPENAI_API_KEY"),
         )
+
+        # Parse JSON from the model
         self.parser = JsonOutputParser()
 
-        # --- FIXED: resolve prompt.txt next to this file ---
-        base_dir = Path(__file__).resolve().parent  # folder of agent.py
+        # --- Load prompt.txt from same folder as this file ---
+        base_dir = Path(__file__).resolve().parent
         prompt_path = base_dir / "prompt.txt"
 
         if not prompt_path.exists():
-            # helpful error if something is still wrong
             raise FileNotFoundError(f"Prompt file not found at: {prompt_path}")
 
         with prompt_path.open("r", encoding="utf-8") as file:
             self.system_prompt = file.read()
 
+        # --- Build the prompt template ---
         self.prompt = ChatPromptTemplate.from_messages(
             [
                 ("system", self.system_prompt),
@@ -40,13 +43,17 @@ class SalesAgent:
                     "User profile: {profile}\n"
                     "Current session state: {state}\n"
                     "User message: {message}\n"
-                    "Return JSON only."
+                    "Return ONLY a valid JSON object in the required format."
                 ),
             ]
         )
 
     def run(self, booking, profile, state, message):
+        """
+        booking, profile, state can be dicts; message is the user text.
+        """
         chain = self.prompt | self.llm | self.parser
+
         return chain.invoke(
             {
                 "booking": booking,
