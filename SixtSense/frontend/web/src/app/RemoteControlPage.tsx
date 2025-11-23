@@ -12,11 +12,25 @@ export default function RemoteControlPage() {
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // 🔑 Read bookingId from the same keys used in MainPage
   const bookingId = useMemo(
     () =>
+      sessionStorage.getItem("bookingId") ||
       sessionStorage.getItem("booking_id") ||
+      localStorage.getItem("bookingId") ||
       localStorage.getItem("booking_id") ||
       "",
+    []
+  );
+
+  // Optional: bookingStatus if you ever need to restrict access
+  const bookingStatus = useMemo(
+    () =>
+      (
+        sessionStorage.getItem("bookingStatus") ||
+        sessionStorage.getItem("booking_status") ||
+        ""
+      ).toLowerCase(),
     []
   );
 
@@ -37,6 +51,8 @@ export default function RemoteControlPage() {
     setAction(nextAction);
 
     try {
+      // Your backend CarLock/Unlock/Blink views don't *need* booking_id,
+      // but sending it in the body is fine and future-proof.
       await api.post(endpoint, { booking_id: bookingId });
 
       if (nextAction === "locking") setDoorsLocked(true);
@@ -58,14 +74,13 @@ export default function RemoteControlPage() {
     }
   };
 
-  const handleLock = () =>
-    callRemoteApi("/api/ai-engine/car/lock/", "locking");
-
+  // 🔗 Align with your Django view docstrings:
+  // CarLockAPIView:  POST /sixt/car/lock/
+  // In frontend: likely prefixed with /api/  → /api/sixt/car/lock/
+  const handleLock = () => callRemoteApi("/api/sixt/car/lock/", "locking");
   const handleUnlock = () =>
-    callRemoteApi("/api/ai-engine/car/unlock/", "unlocking");
-
-  const handleBlink = () =>
-    callRemoteApi("/api/ai-engine/car/blink/", "blinking");
+    callRemoteApi("/api/sixt/car/unlock/", "unlocking");
+  const handleBlink = () => callRemoteApi("/api/sixt/car/blink/", "blinking");
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-black via-black to-orange-600 flex items-center justify-center px-4 py-6">
@@ -179,12 +194,8 @@ export default function RemoteControlPage() {
                 }`}
               />
             </div>
-            <span className="text-sm sm:text-base font-semibold">
-              Lock
-            </span>
-            <span className="text-[11px] mt-1 opacity-80">
-              All doors
-            </span>
+            <span className="text-sm sm:text-base font-semibold">Lock</span>
+            <span className="text-[11px] mt-1 opacity-80">All doors</span>
           </button>
 
           {/* Unlock */}
@@ -209,9 +220,7 @@ export default function RemoteControlPage() {
                 isUnlocking ? "animate-pulse" : ""
               }`}
             />
-            <span className="text-sm sm:text-base font-semibold">
-              Unlock
-            </span>
+            <span className="text-sm sm:text-base font-semibold">Unlock</span>
             <span className="text-[11px] mt-1 text-zinc-400">
               Driver door
             </span>
@@ -231,11 +240,7 @@ export default function RemoteControlPage() {
             ${isBlinking ? "ring-2 ring-orange-300/70" : ""}
           `}
         >
-          <Bell
-            className={`w-4 h-4 ${
-              isBlinking ? "animate-pulse" : ""
-            }`}
-          />
+          <Bell className={`w-4 h-4 ${isBlinking ? "animate-pulse" : ""}`} />
           <span>Blink · Lights & horn</span>
         </button>
 

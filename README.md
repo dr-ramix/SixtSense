@@ -1,6 +1,6 @@
 # SixtSense 🚗
 
-**AI-Powered Car Rental Upgrade Assistant**
+**AI-Powered Car Rental Sales Assistant**
 
 A hackaTUM 2025 project that helps SIXT customers find the perfect vehicle upgrade through natural conversation.
 
@@ -8,14 +8,14 @@ A hackaTUM 2025 project that helps SIXT customers find the perfect vehicle upgra
 
 ## 💡 The Problem
 
-Choosing a car rental upgrade is overwhelming. Customers face:
+Choosing a car rental ai sales assistant is overwhelming. Customers face:
 - Complex pricing tables and technical specifications
 - Uncertainty about which vehicle truly fits their needs
 - Generic upsell offers that don't consider their specific trip
 
 ## ✨ Our Solution
 
-SixtSense uses conversational AI to understand each customer's unique trip requirements and recommend upgrades that genuinely add value. No pressure, no confusion—just honest advice tailored to your journey.
+SixtSense uses conversational AI as a sales person to understand each customer's unique trip requirements and recommend upgrades that genuinely add value. No pressure, no confusion—just honest advice tailored to your journey.
 
 ---
 

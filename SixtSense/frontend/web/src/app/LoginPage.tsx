@@ -19,18 +19,40 @@ export default function MainPage() {
     setLoading(true);
 
     try {
+      // 1) CHECK BOOKING FROM SIXT BRIDGE
+      const bookingInfo = await api.get(`/api/sixt/booking/${bookingId}/`);
+
+      // backend returns: { ..., "status": "completed", "id": "..." }
+      const initialStatusRaw =
+        bookingInfo.data.status || bookingInfo.data.booking_status || "";
+      const initialStatus = String(initialStatusRaw).toLowerCase();
+
+      // store both id + normalized status in session
+      sessionStorage.setItem("bookingId", bookingId);
+      sessionStorage.setItem("bookingStatus", initialStatus);
+
+      // if already completed -> go straight to remote
+      if (initialStatus === "completed") {
+        return navigate("/remote");
+      }
+
+      // 2) YOUR EXISTING AI-ENGINE CALL
       const response = await api.post("/api/ai-engine/start/", {
         booking_id: bookingId,
       });
 
       const chatSessionId = response.data.chat_session_id;
-      const bookingStatus = response.data.booking_status;
+      const bookingStatusRaw = response.data.booking_status;
+      const bookingStatus = bookingStatusRaw
+        ? String(bookingStatusRaw).toLowerCase()
+        : initialStatus; // fallback
 
+      // keep storing with same keys
       sessionStorage.setItem("bookingId", bookingId);
       if (chatSessionId) sessionStorage.setItem("chatSessionId", chatSessionId);
-      if (bookingStatus) sessionStorage.setItem("bookingStatus", bookingStatus);
+      sessionStorage.setItem("bookingStatus", bookingStatus);
 
-      if (bookingStatus === "COMPLETED") {
+      if (bookingStatus === "completed") {
         navigate("/remote", { state: { chatSessionId } });
       } else {
         navigate("/home", { state: { chatSessionId } });
@@ -103,3 +125,4 @@ export default function MainPage() {
     </div>
   );
 }
+

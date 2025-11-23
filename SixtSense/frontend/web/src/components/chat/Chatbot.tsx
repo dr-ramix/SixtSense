@@ -115,13 +115,14 @@ export default function Chatbot({ onAiUpdate }: ChatbotProps) {
   }
 
   return (
-    <Card className="w-full max-w-lg h-[80vh] flex flex-col rounded-2xl shadow-md">
+    <Card className="w-full max-w-lg h-[80vh] flex flex-col rounded-2xl shadow-md overflow-hidden">
       <CardHeader>
         <CardTitle className="text-lg font-semibold">SixtSense</CardTitle>
       </CardHeader>
 
-      <CardContent className="flex-1 px-4">
-        <ScrollArea className="h-[500px] pr-2">
+      {/* make this area flex and scrollable */}
+      <CardContent className="flex-1 px-4 overflow-hidden">
+        <ScrollArea className="h-full pr-2">
           <div className="flex flex-col gap-3">
             {messages.map((msg) => (
               <div
@@ -161,6 +162,7 @@ export default function Chatbot({ onAiUpdate }: ChatbotProps) {
         </ScrollArea>
       </CardContent>
 
+      {/* input bar pinned to bottom */}
       <CardFooter className="border-t px-4 py-3">
         <form onSubmit={handleSubmit} className="flex w-full gap-2">
           <Input
